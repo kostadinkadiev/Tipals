@@ -1,6 +1,6 @@
 ﻿namespace Tipals.Core.Domain
 {
-    interface IRepository
+    public abstract class ValueObject
     {
     }
 }

@@ -2,8 +2,11 @@
   "version": "1.0.0-*",
 
   "dependencies": {
-    "NETStandard.Library": "1.6.0",
-    "Microsoft.Extensions.Caching.Memory": "1.0.0"
+    "Autofac": "4.2.0",
+    "AutoMapper": "5.1.1",
+    "FluentValidation": "6.4.0-beta8",
+    "Microsoft.Extensions.Caching.Memory": "1.0.0",
+    "NETStandard.Library": "1.6.0"
   },
 
   "frameworks": {

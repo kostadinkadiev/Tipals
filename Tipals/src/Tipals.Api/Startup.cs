@@ -1,13 +1,11 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Microsoft.IdentityModel.Tokens;
-using System.Text;
 using Tipals.Api.Extensions;
 using Tipals.Api.Identity;
-using Tipals.Api.Token;
 
 namespace Tipals.Api
 {
@@ -33,6 +31,14 @@ namespace Tipals.Api
         public void ConfigureServices(IServiceCollection services)
         {
             // Add framework services.
+
+            services.AddDbContext<TipalsDbContext>(options => 
+                options.UseSqlServer(Configuration.GetConnectionString(_environment.EnvironmentName)));
+
+            services.AddIdentity<User, Role>()
+                .AddEntityFrameworkStores<TipalsDbContext>()
+                .AddDefaultTokenProviders();
+
             services.AddMvc();
             services.AddAutoMapper();
         }
@@ -43,21 +49,8 @@ namespace Tipals.Api
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
 
+            app.UseIdentity();
             app.UseMvc();
-
-            // The secret key every token will be signed with.
-            // Keep this safe on the server!
-            var secretKey = "mysupersecret_secretkey!123";
-
-            app.UseSimpleTokenProvider(new TokenProviderOptions
-            {
-                Path = "/api/token",
-                Audience = "TipalsAudience",
-                Issuer = "Tipals",
-                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(Encoding.ASCII.GetBytes(secretKey)),
-                SecurityAlgorithms.HmacSha256),
-                IdentityResolver = IdentityResolver.GetIdentity
-            });
         }
     }
 }

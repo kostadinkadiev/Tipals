@@ -8,12 +8,12 @@
         </div>
         <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
             <label for="password">Password</label>
-            <input type="password" class="form-control" name="password" [(ngModel)]="model.password" #password="ngModel" required validateEqual="confirmPassword" reverse="true"/>
+            <input type="password" class="form-control" name="password" [(ngModel)]="model.password" #password="ngModel" required validateEqual="passwordConfirmation" reverse="true"/>
             <div *ngIf="f.submitted && !password.valid" class="help-block">Password is required</div>
         </div>
         <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !passwordConfirmation.valid }">
             <label for="passwordConfirmation">Repeat Password</label>
-            <input type="password" class="form-control" name="passwordConfirmation" [(ngModel)]="model.passwordConfirmation" #passwordConfirmation="ngModel" required validateEqual="password"/>
+            <input type="password" class="form-control" name="passwordConfirmation" [(ngModel)]="model.passwordConfirmation" #passwordConfirmation="ngModel" required validateEqual="password" reverse="false"/>
             <div *ngIf="f.submitted && !passwordConfirmation.valid" class="help-block">Password mismatch</div>
         </div>
         <div class="form-group">

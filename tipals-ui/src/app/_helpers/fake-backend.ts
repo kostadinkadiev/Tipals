@@ -20,7 +20,7 @@ export let fakeBackendProvider = {
 
                     // find if any user matches login credentials
                     let filteredUsers = users.filter(user => {
-                        return user.username === params.username && user.password === params.password;
+                        return user.email === params.email && user.password === params.password;
                     });
 
                     if (filteredUsers.length) {
@@ -30,15 +30,13 @@ export let fakeBackendProvider = {
                             status: 200,
                             body: {
                                 id: user.id,
-                                username: user.username,
-                                firstName: user.firstName,
-                                lastName: user.lastName,
+                                email: user.email,
                                 token: 'fake-jwt-token'
                             }
                         })));
                     } else {
                         // else return 400 bad request
-                        connection.mockError(new Error('Username or password is incorrect'));
+                        connection.mockError(new Error('Email or password is incorrect'));
                     }
                 }
 
@@ -77,9 +75,9 @@ export let fakeBackendProvider = {
                     let newUser = JSON.parse(connection.request.getBody());
 
                     // validation
-                    let duplicateUser = users.filter(user => { return user.username === newUser.username; }).length;
+                    let duplicateUser = users.filter(user => { return user.email === newUser.email; }).length;
                     if (duplicateUser) {
-                        return connection.mockError(new Error('Username "' + newUser.username + '" is already taken'));
+                        return connection.mockError(new Error('Email "' + newUser.email + '" is already taken'));
                     }
 
                     // save new user

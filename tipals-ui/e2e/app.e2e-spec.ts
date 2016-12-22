@@ -1,10 +1,10 @@
-import { TipalsUiPage } from './app.po';
+import { FirstAppPage } from './app.po';
 
-describe('tipals-ui App', function() {
-  let page: TipalsUiPage;
+describe('first-app App', function() {
+  let page: FirstAppPage;
 
   beforeEach(() => {
-    page = new TipalsUiPage();
+    page = new FirstAppPage();
   });
 
   it('should display message saying app works', () => {

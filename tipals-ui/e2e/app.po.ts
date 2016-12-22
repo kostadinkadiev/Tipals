@@ -1,6 +1,6 @@
 import { browser, element, by } from 'protractor';
 
-export class TipalsUiPage {
+export class FirstAppPage {
   navigateTo() {
     return browser.get('/');
   }

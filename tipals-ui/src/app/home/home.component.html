@@ -8,5 +8,7 @@
             - <a (click)="deleteUser(user.id)">Delete</a>
         </li>
     </ul>
+    <app-header></app-header>
+    <router-outlet></router-outlet>
     <p><a [routerLink]="['/login']">Logout</a></p>
 </div>

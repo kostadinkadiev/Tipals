@@ -19,6 +19,9 @@ import { AlertComponent } from './_directives/index';
 import { AuthGuard } from './_guards/index';
 import { HomeComponent } from './home/index';
 import { EqualValidator } from './register/equal-validator';
+import { HeaderComponent } from './home/header.component';
+import { NewTicketComponent } from './new-ticket/new-ticket.component';
+import { BestTipersComponent } from './best-tipers/best-tipers.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +32,10 @@ import { EqualValidator } from './register/equal-validator';
     LoginComponent,
     AlertComponent,
     HomeComponent,
-    EqualValidator
+    EqualValidator,
+    HeaderComponent,
+    NewTicketComponent,
+    BestTipersComponent
   ],
   imports: [
     BrowserModule,

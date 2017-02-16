@@ -12,7 +12,7 @@ import { AppComponent } from './app.component';
 import { OtherComponent } from './other/other.component';
 import { AnotherComponent } from './other/another.component';
 import { RegisterComponent } from './register/index';
-import { UserService, AlertService, AuthenticationService } from './_services/index';
+import { UserService, AlertService, AuthenticationService, MatchesService } from './_services/index';
 import { routing } from './app-routing.module';
 import { LoginComponent } from './login/index';
 import { AlertComponent } from './_directives/index';
@@ -22,6 +22,7 @@ import { EqualValidator } from './register/equal-validator';
 import { HeaderComponent } from './home/header.component';
 import { NewTicketComponent } from './new-ticket/new-ticket.component';
 import { BestTipersComponent } from './best-tipers/best-tipers.component';
+import { MatchDetailsComponent } from './match-details/match-details.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { BestTipersComponent } from './best-tipers/best-tipers.component';
     EqualValidator,
     HeaderComponent,
     NewTicketComponent,
-    BestTipersComponent
+    BestTipersComponent,
+    MatchDetailsComponent
   ],
   imports: [
     BrowserModule,
@@ -48,7 +50,7 @@ import { BestTipersComponent } from './best-tipers/best-tipers.component';
     AlertService,
     AuthGuard,
     AuthenticationService,
-
+    MatchesService,
     // providers used to create fake backend
     fakeBackendProvider,
     MockBackend,

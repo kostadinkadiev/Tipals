@@ -1,13 +1,15 @@
-﻿<div class="col-md-6 col-md-offset-3">
-    <h1>Hi {{currentUser.email}}!</h1>
-    <p>You're logged in with Angular 2!!</p>
-    <h3>All registered users:</h3>
-    <ul>
-        <li *ngFor="let user of users">
-            {{user.email}}
-            - <a (click)="deleteUser(user.id)">Delete</a>
-        </li>
-    </ul>
+﻿<div class="col-md-10 col-md-offset-1">
+        <h1>Hi {{currentUser.email}}!</h1>
+        <p>You're logged in with Angular 2!!</p>
+
+        <p>ja tuka trebe da e {{choiceId}}</p>
+        <h3>All registered users:</h3>
+        <ul>
+            <li *ngFor="let user of users">
+                {{user.email}}
+                <a (click)="deleteUser(user.id)">Delete</a>
+            </li>
+        </ul>
     <app-header></app-header>
     <router-outlet></router-outlet>
     

@@ -1,3 +1,6 @@
-<p>
-  new-ticket works!
+
+{{choiceId}}
+
+<p *ngFor="let match of matches" (click)="onClick(match)">
+  {{match.name}} {{match.startDate | date:'medium'}}
 </p>

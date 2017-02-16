@@ -1,0 +1,21 @@
+#form1 {
+  width: 100%;
+  border: 1px solid #000;
+  background-color: yellow;
+}
+.betName {
+  width: 100%;
+  text-align: center;
+  font-size: large;
+  border: 1px solid black;
+  background-color:red;
+}
+.spanBet{
+    display: inline-block;
+    border: 1px solid blue;
+    width: 49%;
+}
+td, th{
+    text-align:center; 
+    vertical-align:middle;
+}

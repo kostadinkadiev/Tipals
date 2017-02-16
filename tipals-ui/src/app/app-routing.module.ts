@@ -7,13 +7,16 @@ import { HomeComponent } from './home/index';
 import { AuthGuard } from './_guards/index';
 import { NewTicketComponent } from './new-ticket/new-ticket.component';
 import { BestTipersComponent } from './best-tipers/best-tipers.component';
+import { MatchDetailsComponent } from './match-details/match-details.component';
 
 const routes: Routes = [
   { path: 'home', canActivate: [AuthGuard], component: HomeComponent
     ,children: [
       { path: '', redirectTo: 'newTicket', pathMatch: 'full' },
       { path: 'newTicket', component: NewTicketComponent},
-      { path: 'BestTipers', component: BestTipersComponent}
+      { path: 'BestTipers', component: BestTipersComponent},
+      { path: 'match/:id', component: MatchDetailsComponent}
+      
     ]
   },
   { path: 'register', component: RegisterComponent },

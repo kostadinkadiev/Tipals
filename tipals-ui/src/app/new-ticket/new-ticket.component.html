@@ -1,5 +1,5 @@
-
-{{choiceId}}
+<button (click)="kopche()">kopche</button>
+<p>{{matchGame}}{{choiceGame}}</p>
 
 <p *ngFor="let match of matches" (click)="onClick(match)">
   {{match.name}} {{match.startDate | date:'medium'}}

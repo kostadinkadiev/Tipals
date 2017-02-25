@@ -12,28 +12,24 @@ export class MatchDetailsComponent implements OnInit {
 
   id: number;
   match: Match;
-  choiceIdR: number;
+  router: Router;
 
-  constructor(private activatedRoute: ActivatedRoute, private matchesService: MatchesService) { 
-    this.id = activatedRoute.snapshot.params['id'];    
+  private value = "dispatcher component value";
+
+  constructor(private activatedRoute: ActivatedRoute, private matchesService: MatchesService, router: Router) {
+    this.id = activatedRoute.snapshot.params['id'];
+    this.router = router;
   }
- 
+
   ngOnInit() {
     this.match = this.matchesService.getById(this.id);
-
-    // this.matchesService.pushedChoice.subscribe(
-    //   data => this.choiceIdR = data
-    // );
-    
   }
 
-  onSend(choiceId: number){
-  console.log(choiceId);
-  this.matchesService.pushChoice(choiceId);
-  window.location.href = 'home/newTicket';
-  //window.close();
-  //console.log("Choice ID:"+this.choiceIdR);
-}
+  onSend(match, choice) {
+    this.matchesService.pushMatch(match);
+    this.matchesService.pushChoice(choice);
+    this.router.navigate(['home/newTicket']);
+  }
 
 }
 

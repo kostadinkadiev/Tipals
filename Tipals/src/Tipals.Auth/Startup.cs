@@ -13,6 +13,7 @@ using Tipals.Data;
 using Microsoft.EntityFrameworkCore;
 using Tipals.Domain.Entities;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Tipals.Auth.Configuration;
 
 namespace Tipals.Auth
 {
@@ -46,7 +47,7 @@ namespace Tipals.Auth
         {
             services.AddDbContext<TipalsDbContext>(options => 
                 options.UseSqlServer(Configuration[$"ConnectionStrings:{EnvironmentName}"],
-                opt => opt.MigrationsAssembly(this.GetType().Namespace)));
+                opt => opt.MigrationsAssembly(GetType().Namespace)));
 
             services.AddIdentity<User, IdentityRole>(options =>
                 {
@@ -61,6 +62,14 @@ namespace Tipals.Auth
 
             // Add framework services.
             services.AddMvc();
+
+            services.AddIdentityServer()
+                .AddTemporarySigningCredential()
+                .AddInMemoryPersistedGrants()
+                .AddInMemoryIdentityResources(IdentityServerConfiguration.GetIdentityResources())
+                .AddInMemoryApiResources(IdentityServerConfiguration.GetApiResources())
+                .AddInMemoryClients(IdentityServerConfiguration.GetClients())
+                .AddAspNetIdentity<User>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -68,9 +77,8 @@ namespace Tipals.Auth
         {
             loggerFactory.AddSerilog();
 
-            app.UseDeveloperExceptionPage();
-
             app.UseIdentity();
+            app.UseIdentityServer();
 
             app.UseMvc();
         }

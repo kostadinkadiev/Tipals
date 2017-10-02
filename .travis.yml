@@ -5,7 +5,7 @@ mono: none
 dotnet: 2.0.0
 
 install:
-- dotnet restore TRAVIS_SOLUTION
+- dotnet restore Tipals.sln
 
 script:
-- dotnet build TRAVIS_SOLUTION
+- dotnet build Tipals.sln

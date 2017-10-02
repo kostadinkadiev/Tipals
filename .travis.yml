@@ -1,4 +1,5 @@
 ﻿language: csharp
+solution: Tipals.sln
 dist: trusty
 mono: none
 dotnet: 2.0.0

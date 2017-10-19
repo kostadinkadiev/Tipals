@@ -1,0 +1,51 @@
+.activeLink{
+    background-color: white !important;
+    text-decoration: none;
+    color: #4d636f;
+}
+
+
+
+
+
+
+
+/*nav
+{
+    background-color: #e8edff;
+    height: 60px;
+    position: fixed;
+    z-index: 1001;
+    width: 100%;
+}
+a
+{
+    color: #039 !important;
+}
+li
+{
+    font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+	font-size: 16px;
+	text-align: center;
+    font-weight: bold;
+    
+}
+
+li:hover 
+{
+  background-color: peachpuff;
+}
+
+a:focus
+{
+    font-weight: bold;
+    color: floralwhite !important;
+    background-color: royalblue !important;
+    border-radius: 3px;
+}
+.activeLink{
+    font-weight: bold;
+    color: floralwhite !important;
+    background-color: royalblue !important;
+    border-radius: 3px;
+}*/

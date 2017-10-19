@@ -1,0 +1,204 @@
+<!--<app-new-ticket [game]="selectedGame"></app-new-ticket>-->
+
+<br>
+
+<ul class="nav nav-pills">
+  <ng-container *ngFor="let tab of leagues; let i=index">
+    <li style="cursor: pointer" #selectedTab id="tab{{i}}" role="presentation" (click)="selectTab(tab, selectedTab)" [class.active]="i == 0">
+    {{tab}} </li>
+  </ng-container>
+</ul>
+
+<br>
+
+<p *ngIf="leagueMatches.length == 0">Odberete liga</p>
+<br>
+
+<div *ngIf="leagueMatches.length > 0">
+
+  <table id="tabelata">
+    <colgroup>
+      <col class="first" />
+      <col class="even" />
+      <col class="odd" />
+      <col class="even" />
+      <col class="odd" />
+      <col class="even" />
+      <col class="odd" />
+      <col class="even" />
+      <col class="odd" />
+      <col class="even" />
+      <col class="odd" />
+      <col class="even" />
+      <col class="odd" />
+      <col class="even" />
+      <col class="odd" />
+      <col class="even" />
+      <col class="odd" />
+      <col class="even" />
+      <col class="even" />
+      <col class="odd" />
+      <col class="even" />
+      <col class="odd" />
+      <col class="even" />
+      <col class="odd" />
+      <col class="even" />
+      <col class="odd" />
+      <col class="even" />
+      <col class="odd" />
+      <col class="even" />
+      <col class="odd" />
+      <col class="even" />
+      <col class="odd" />
+      <col class="even" />
+      <col class="odd" />
+      <col class="even" />
+      <col class="odd" />
+      <col class="even" />
+      <col class="odd" />
+      <col class="even" />
+      <col class="odd" />
+      <col class="even" />
+      <col class="odd" />
+      <col class="even" />
+      <col class="odd" />
+      <col class="even" />
+      <col class="odd" />
+      <col class="even" />
+      <col class="odd" />
+      <col class="even" />
+      <col class="odd" />
+      <col class="even" />
+      <col class="odd" />
+      <col class="even" />
+      <col class="odd" />
+      <col class="even" />
+      <col class="odd" />
+      <col class="even" />
+      <col class="odd" />
+      <col class="even" />
+      <col class="odd" />
+      <col class="even" />
+      <col class="odd" />
+      <col class="even" />
+      <col class="odd" />
+      <col class="even" />
+      <col class="odd" />
+      <col class="even" />
+      <col class="odd" />
+      <col class="even" />
+      <col class="odd" />
+      <col class="even" />
+      <col class="odd" />
+
+    </colgroup>
+
+    <thead>
+      <tr>
+        <th rowspan="2" class="odd"> Tipals Rocks</th>
+        <th colspan="6" class="even">Handicap</th>
+        <th colspan="3" class="odd">Total Goals</th>
+        <th colspan="3" class="even">Half-Time Result</th>
+        <th colspan="6" class="odd">Number of Goals</th>
+        <th colspan="54" class="even">Correct Score</th>
+      </tr>
+
+      <tr>
+        <th>%1% -2</th>
+        <th>Draw (%1% -2)</th>
+        <th>%2% +2</th>
+        <th>%1% -3</th>
+        <th>Draw (%1% -3)</th>
+        <th>%2% +3</th>
+        <th>0 - 1</th>
+        <th>2 - 3</th>
+        <th>4+</th>
+        <th>%1%</th>
+        <th>%2%</th>
+        <th>Draw</th>
+        <th>0</th>
+        <th>1</th>
+        <th>2</th>
+        <th>3</th>
+        <th>4</th>
+        <th>5+</th>
+        <th>1 - 0</th>
+        <th>2 - 0</th>
+        <th>2 - 1</th>
+        <th>3 - 0</th>
+        <th>3 - 1</th>
+        <th>3 - 2</th>
+        <th>0 - 1</th>
+        <th>2 - 3</th>
+        <th>4 - 0</th>
+        <th>4 - 1</th>
+        <th>4 - 2</th>
+        <th>4 - 3</th>
+        <th>5 - 0</th>
+        <th>5 - 1</th>
+        <th>5 - 2</th>
+        <th>5 - 3</th>
+        <th>5 - 4</th>
+        <th>6 - 0</th>
+        <th>6 - 1</th>
+        <th>6 - 2</th>
+        <th>6 - 3</th>
+        <th>7 - 0</th>
+        <th>7 - 1</th>
+        <th>8 - 0</th>
+        <th>8 - 1</th>
+        <th>0 - 0</th>
+        <th>1 - 1</th>
+        <th>2 - 2</th>
+        <th>3 - 3</th>
+        <th>4 - 4</th>
+        <th>5 - 5</th>
+        <th>0 - 1</th>
+        <th>0 - 2</th>
+        <th>1 - 2</th>
+        <th>0 - 3</th>
+        <th>1 - 3</th>
+        <th>2 - 3</th>
+        <th>0 - 4</th>
+        <th>1 - 4</th>
+        <th>2 - 4</th>
+        <th>3 - 4</th>
+        <th>0 - 5</th>
+        <th>1 - 5</th>
+        <th>2 - 5</th>
+        <th>3 - 5</th>
+        <th>4 - 5</th>
+        <th>0 - 6</th>
+        <th>1 - 6</th>
+        <th>2 - 6</th>
+        <th>3 - 6</th>
+        <th>0 - 7</th>
+        <th>1 - 7</th>
+        <th>0 - 8</th>
+        <th>1 - 8</th>
+
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let match of leagueMatches">
+        <td>{{match.name}}</td>
+        <ng-container *ngFor="let bet of match.bets">
+          <ng-container *ngIf="bet.name == 'Handicap' || bet.name == 'Total Goals'">
+            <ng-container *ngFor="let choice of bet.choice">
+              <td style="cursor: pointer" (click)="onSend(match, choice, bet)">{{choice.odd}}</td>
+            </ng-container>
+          </ng-container>
+        </ng-container>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<ng-container *ngFor="let match of leagueMatches">
+        <ng-container *ngFor="let bet of match.bets">
+            <ng-container *ngFor="let choice of bet.choice">
+              <p>{{choice.odd}}</p>
+            </ng-container>
+        </ng-container>
+      </ng-container>

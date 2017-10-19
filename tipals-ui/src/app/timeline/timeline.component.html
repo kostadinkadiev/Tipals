@@ -1,0 +1,48 @@
+<div class="w3-container">
+  <ng-container *ngFor="let ticket of tickets; let i = index">
+    <div class="w3-container" style="border-radius: 10px; font-size: small;" [ngStyle]="{'border': ticket.isWin? '1px solid green' : '1px solid red'}">
+
+      <ng-container *ngFor="let game of ticket.games; let j = index">
+        <div class="w3-container">
+          <ng-container *ngIf="j < 3" style="display:hiden">
+            <div id={{i}}>
+
+              <div class="row">
+                <h4 style="font-weight: bold" class="pull-left">{{game.matchName}}</h4>
+                <h4 style="font-size: small" class="pull-right">{{game.startDate| date:'dd.MMM.y HH:mm'}}</h4>
+              </div>
+
+              <div class="row">
+                <p class="pull-left">{{game.betName}} {{game.choiceName}}</p>
+                <p class="pull-right">@{{game.choiceOdd.toFixed(2)}}
+                  <i *ngIf="game.isWin" class="fa fa-check fa-lg" aria-hidden="true" style="color: green"></i>
+                  <i *ngIf="!game.isWin" class="fa fa-times fa-lg" aria-hidden="true" style="color: red"></i>
+                </p>
+              </div>
+
+            </div>
+          </ng-container>
+        </div>
+        <h4 *ngIf="j >= 3" (click)="ShowMore(i)" style="cursor: pointer">Show More</h4>
+      </ng-container>
+
+
+      <div class="w3-container">
+        <div class="row" [ngStyle]="{'color': ticket.isWin? 'green' : 'darkred'}">
+          <!--<h4 style="font-weight: bold" class="pull-left">Bet: {{ticket.bet}}€&nbsp;</h4>-->
+          <h4 style="font-weight: bold" class="pull-right"> @{{ticket.totalCoeficient}}</h4>
+          <h4 *ngIf="ticket.isWin" style="font-weight: bold" class="pull-right">Win</h4>
+          <h4 *ngIf="!ticket.isWin" style="font-weight: bold" class="pull-right">Lost</h4>
+
+          <!--<h4 style="font-weight: bold" class="pull-left">&nbsp;= {{ticket.bet*ticket.totalCoeficient}}€ Total Payout-->
+          <!--<i *ngIf="ticket.isWin" class="fa fa-check fa-lg" aria-hidden="true" style="color: green"> Win </i>
+            <i *ngIf="!ticket.isWin" class="fa fa-times fa-lg" aria-hidden="true" style="color: red"> Lost </i>-->
+          <!--</h4>-->
+        </div>
+      </div>
+      <!--</div>-->
+
+    </div>
+    <br>
+  </ng-container>
+</div>

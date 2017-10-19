@@ -12,7 +12,7 @@ import { AppComponent } from './app.component';
 import { OtherComponent } from './other/other.component';
 import { AnotherComponent } from './other/another.component';
 import { RegisterComponent } from './register/index';
-import { UserService, AlertService, AuthenticationService, MatchesService } from './_services/index';
+import { UserService, AlertService, AuthenticationService, MatchesService, TicketService } from './_services/index';
 import { routing } from './app-routing.module';
 import { LoginComponent } from './login/index';
 import { AlertComponent } from './_directives/index';
@@ -23,6 +23,10 @@ import { HeaderComponent } from './home/header.component';
 import { NewTicketComponent } from './new-ticket/new-ticket.component';
 import { BestTipersComponent } from './best-tipers/best-tipers.component';
 import { MatchDetailsComponent } from './match-details/match-details.component';
+import { BiltenComponent } from './new-ticket/bilten.component';
+import { TimelineComponent } from './timeline/timeline.component';
+import { BuyTicketsComponent } from './buy-tickets/buy-tickets.component';
+import { FilterBetsPipe } from './new-ticket/filter-bets.pipe';
 
 @NgModule({
   declarations: [
@@ -37,7 +41,11 @@ import { MatchDetailsComponent } from './match-details/match-details.component';
     HeaderComponent,
     NewTicketComponent,
     BestTipersComponent,
-    MatchDetailsComponent
+    MatchDetailsComponent,
+    BiltenComponent,
+    TimelineComponent,
+    BuyTicketsComponent,
+    FilterBetsPipe
   ],
   imports: [
     BrowserModule,
@@ -51,6 +59,7 @@ import { MatchDetailsComponent } from './match-details/match-details.component';
     AuthGuard,
     AuthenticationService,
     MatchesService,
+    TicketService,
     // providers used to create fake backend
     fakeBackendProvider,
     MockBackend,

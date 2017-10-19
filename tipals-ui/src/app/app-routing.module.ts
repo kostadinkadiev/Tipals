@@ -5,25 +5,28 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/index';
 import { HomeComponent } from './home/index';
 import { AuthGuard } from './_guards/index';
-import { NewTicketComponent } from './new-ticket/new-ticket.component';
-import { BestTipersComponent } from './best-tipers/best-tipers.component';
+import { NewTicketComponent, BiltenComponent } from './new-ticket';
+import { BestTipersComponent } from './best-tipers';
 import { MatchDetailsComponent } from './match-details/match-details.component';
+import { TimelineComponent } from './timeline/timeline.component';
+import { BuyTicketsComponent } from './buy-tickets/buy-tickets.component';
 
 const routes: Routes = [
-  { path: 'home', canActivate: [AuthGuard], component: HomeComponent
+  { path: '', canActivate: [AuthGuard], component: HomeComponent
     ,children: [
-      { path: '', redirectTo: 'newTicket', pathMatch: 'full' },
-      { path: 'newTicket', component: NewTicketComponent},
-      { path: 'BestTipers', component: BestTipersComponent},
-      { path: 'match/:id', component: MatchDetailsComponent}
-      
+      { path: '', redirectTo: 'home', pathMatch: 'full' },
+      { path: 'newTicket', component: BiltenComponent },
+      { path: 'bestTipers', component: BestTipersComponent },
+      { path: 'home', component: TimelineComponent },
+      { path: 'buyTickets', component: BuyTicketsComponent },
+      { path: 'matchDetails/:id', component: MatchDetailsComponent }
     ]
   },
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
   
   // otherwise redirect to home
-  { path: '**', redirectTo: 'home/newTicket' }
+  { path: '**', redirectTo: 'home' }
 ];
 
  export const routing = RouterModule.forRoot(routes);

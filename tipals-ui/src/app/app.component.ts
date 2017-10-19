@@ -5,10 +5,11 @@ import { OtherComponent, AnotherComponent } from './other';
 @Component({
   // moduleId: module.id,
   selector: 'app-root',
-  templateUrl: './app.component.html'
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
 })
 
 
 export class AppComponent {
-  title = 'Tipals, a place where you make money!';
+  
 }

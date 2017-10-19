@@ -1,0 +1,89 @@
+table {
+  font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+	font-size: 12px;
+	margin: 45px;
+	width: 100%;
+	text-align: center;
+	border-collapse: collapse;
+  border: 1px solid #039;
+}
+
+
+th
+{
+  text-align: center;
+	font-size: 14px;
+	font-weight: normal;
+	padding: 12px 15px;
+	border-right: 1px solid #fff;
+	border-left: 1px solid #fff;
+	color: #039;
+  border: 1px solid #039;
+}
+td
+{
+	padding: 8px 15px;
+	border-right: 1px solid #fff;
+	border-left: 1px solid #fff;
+	color: #669;
+  border: 1px solid #039;
+}
+.first
+{
+  background: #eff2ff;
+}
+.odd
+{
+	background: #eff2ff;
+}
+.even
+{
+	background: #e8edff;
+}
+td:hover 
+{
+  background-color: #ffa;
+  font-weight: bold;
+}
+tr:hover td:nth-child(1)
+{
+  background-color: #ffa;
+  font-weight: bold;
+}
+
+li
+{
+  font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+  padding: 15px;
+  background-color: #e8edff;
+  border-radius: 5px;
+}
+.active{
+  font-weight: bold;
+  background-color: royalblue;
+  color: floralwhite;
+}
+/*
+table{
+  border: 1px solid black;
+   overflow: hidden;
+}
+th, td {
+    border: 1px solid black;
+    position: relative;
+    margin: 10px;
+    padding: 5px;
+    text-align: center;
+}
+/*
+li {
+  margin: 10px;
+  padding: 5px;
+  text-align: center;
+}
+li:hover{
+  font-weight: bold;
+}*/
+
+
+

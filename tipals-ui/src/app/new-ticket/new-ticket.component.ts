@@ -1,53 +1,84 @@
-import { Component, OnInit } from '@angular/core';
-import { Match, Bets, Choice } from '../_models';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Component, Input, OnInit, OnChanges, SimpleChanges } from '@angular/core';
+import { Match, Choice, Game } from '../_models/index';
 import { MatchesService } from '../_services/index';
-import { Subscription } from 'rxjs/Subscription';
 
 @Component({
   selector: 'app-new-ticket',
-  templateUrl: './new-ticket.component.html'
+  templateUrl: './new-ticket.component.html',
+  styleUrls: ['./new-ticket.component.css']
 })
 export class NewTicketComponent implements OnInit {
 
-  choiceGame: Choice = new Choice('', 0, 0);
-  choiceId: number;
-  matchGame: Match;
-  matchID: number;
-  router: Router;
+  games = new Array<Game>();
+  totalCoeficient = 1;
+  index: number;
+  //flag: boolean;
+  game: Game;
 
-  constructor(private matchesService: MatchesService, router: Router) {
-    this.router = router;
-    this.choiceId = 0;
-
-    this.matchesService.pushedMatch.subscribe(
-      data => {
-        console.log("dobivam match vo NewTicketComponent");
-        this.matchGame = data;
-        console.log(this.matchGame);
-      });
-
-  }
+  constructor(private matchesService: MatchesService) { }
 
   ngOnInit() {
-    
-    this.matchesService.pushedChoice.subscribe(
-       (data) => window['choiceId'] = data
+    this.matchesService.pushedGame.subscribe(
+      data => this.addGame(data)
     );
   }
 
-  kopche() {
-    console.log("od kopche");
-    console.log(window['choiceId']);
-    console.log(this.matchGame);
+  // ngOnChanges(changes: SimpleChanges): void {
+
+  //   if (!this.game)
+  //     return;
+
+  //   this.addGame(this.game);
+  //   this.totalCoeficient = this.calculateTotalCoeficient();
+  // }
+
+  clickDa() {
+    this.games[this.index] = this.game;
+    this.totalCoeficient = this.calculateTotalCoeficient();
+    document.getElementById('id01').style.display = 'none'
   }
 
-  matches = this.matchesService.getAll();
-
-  onClick(match) {
-    this.matchID = match.id;
-    this.router.navigate(['home/match/' + match.id]);
+  clickNe() {
+    document.getElementById('id01').style.display = 'none'
   }
+
+  addGame(game) {
+    this.index = this.games.findIndex(e => e.matchName == game.matchName);
+    if (this.index == -1) {
+      this.games.push(game);
+    }
+    else{
+
+      //   if (confirm("Utakmicta ti e veke uplatena sakash li da ja zamenish?")) {
+      //     this.games[index] = game;
+      //   }
+      //   this.totalCoeficient = this.calculateTotalCoeficient();
+      this.game = game;
+      document.getElementById('id01').style.display = 'block'
+    }
+    
+    this.totalCoeficient = this.calculateTotalCoeficient();
+    
+  }
+
+  calculateTotalCoeficient() {
+    var totalCoeficient = 1;
+    for (var i = 0; i < this.games.length; i++) {
+      totalCoeficient = totalCoeficient * this.games[i].choiceOdd;
+    }
+    return totalCoeficient;
+  }
+
+  delete(index) {
+    this.games.splice(index, 1);
+    this.totalCoeficient = this.calculateTotalCoeficient();
+  }
+
+  deleteAll() {
+    this.games = [];
+  }
+
+
 }
 
 

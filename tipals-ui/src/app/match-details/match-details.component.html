@@ -1,42 +1,75 @@
-<h4 style="text-align: center">{{match.name}}</h4>
-<h6 style="text-align: center">{{match.startDate | date:'medium'}}</h6>
+<ng-container *ngFor="let match of matches">
+  <ng-container *ngIf="match.id == id">
+    <h4 style="text-align: center">{{match.name}}</h4>
+    <h6 style="text-align: center">{{match.startDate | date:'(EEEE) dd.MM.y HH:mm'}}</h6>
 
-   
-<div class="row">
+    <ng-container *ngFor="let bet of match.bets">
 
-  <ng-container *ngFor="let bet of match.bets">
+      <button (click)="betClick(bet.id)" class="w3-button w3-block w3-theme-l1 w3-left-align" style="cursor: pointer; margin: 5px">
+        {{bet.name}}
+      <i class="fa fa-plus pull-right"></i></button>
 
-    <div class="text-center col-12 col-sm-6 col-md-4 col-lg-2">
-    <div class="text-center">
-      {{bet.name}}
-    </div>
+      <div id={{bet.id}} class="row w3-hide w3-container w3-animate-opacity">
+        <ng-container *ngFor="let choice of bet.choice">
 
-    <div class="row">
+          <span class="text-center col-xs-5" style="margin: 5px">
+            Coeficient: {{choice.odd}}
+          </span>
 
-      <div class="text-center col-6">
-        choice
-      </div>
+          <button class="text-center col-xs-5" (click)="onSend(match, choice, bet)" style="cursor: pointer; margin: 5px">
+            {{choice.name}}
+          </button>
 
-      <div class="text-center col-6">
-        coeficient
-      </div>
 
-    </div>
 
-    <ng-container *ngFor="let choice of bet.choice">
-      <div class="row">
 
-        <div class="text-center col-6" (click)="onSend(match, choice)">
-          {{choice.name}}
-        </div>
+        </ng-container>
 
-        <div class="text-center col-6">
-          {{choice.odd}}
-        </div>
       </div>
 
     </ng-container>
-</div>
   </ng-container>
+</ng-container>
+<!--<div class="row">
+  <ng-container *ngFor="let match of matches">
+    <ng-container *ngIf="match.id == id">
+      <h4 style="text-align: center">{{match.name}}</h4>
+      <h6 style="text-align: center">{{match.startDate | date:'medium'}}</h6>
+      <ng-container *ngFor="let bet of match.bets">
 
-</div>
+        <div class="text-center col-12 col-sm-6 col-md-4 col-lg-2">
+          <div class="text-center">
+            {{bet.name}}
+          </div>
+
+          <div class="row">
+
+            <div class="text-center col-6">
+              choice
+            </div>
+
+            <div class="text-center col-6">
+              coeficient
+            </div>
+
+          </div>
+
+          <ng-container *ngFor="let choice of bet.choice">
+            <div class="row">
+
+              <div class="text-center col-6" (click)="onSend(match, choice)">
+                {{choice.name}}
+              </div>
+
+              <div class="text-center col-6">
+                {{choice.odd}}
+              </div>
+            </div>
+
+          </ng-container>
+        </div>
+
+      </ng-container>
+    </ng-container>
+  </ng-container>
+</div>-->

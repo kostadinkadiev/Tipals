@@ -1,0 +1,66 @@
+p
+{
+    font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+    margin: 0 !important;
+}
+table {
+  font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+	font-size: 12px;
+	margin: 45px;
+	width: 700px;
+	text-align: center;
+	border-collapse: collapse;
+  border: 1px solid #039;
+}
+th
+{
+	background-color: #eff2ff;
+  text-align: center;
+	font-size: 14px;
+	font-weight: normal;
+	padding: 10px 12px;
+	border-right: 1px solid #fff;
+	border-left: 1px solid #fff;
+	color: #039;
+  border: 1px solid #039;
+}
+td
+{
+	background-color: #e8edff;
+	padding: 8px 12px;
+	border-right: 1px solid #fff;
+	border-left: 1px solid #fff;
+	color: #669;
+  border: 1px solid #039;
+}
+.first
+{
+    width: 5%;
+}
+.second
+{
+    width: 45%;
+}
+.third
+{
+    width: 18%;
+}
+.fourth
+{
+    width: 12%
+}
+.saveTicket {
+  animation: pulse 3s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    background-color: #eff2ff;
+  }
+  50% {
+    background-color: #8486f9;
+  }
+  100% {
+    background-color: #eff2ff;
+  }
+}

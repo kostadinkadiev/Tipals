@@ -1,0 +1,41 @@
+<app-best-tipers [game] = "selectedGame"></app-best-tipers>
+
+<br>
+
+<table>
+  <thead>
+  <tr>
+    <th rowspan="2"> Tipals Rocks</th>
+    <th colspan="6">Handicap</th>
+    <th colspan="3">Total Goals</th>
+    <th colspan="3">Half-Time Result</th>
+  </tr>
+    
+  <tr>
+    <th>%1% -2</th>
+    <th>Draw (%1% -2)</th>
+    <th>%2% +2</th>
+    <th>%1% -3</th>
+    <th>Draw (%1% -3)</th>
+    <th>%2% +3</th>
+    <th>0 - 1</th>
+    <th>2 - 3</th>
+    <th>4+</th>
+    <th>%1%</th>
+    <th>%2%</th>
+    <th>Draw</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <tr *ngFor="let match of matches">
+    <td>{{match.name}}</td>
+    <ng-container *ngFor="let bet of match.bets">
+      <ng-container *ngFor="let choice of bet.choice">
+        <td style="cursor: pointer" (click)="onSend(match, choice)">{{choice.odd}}</td>
+      </ng-container>
+    </ng-container>
+  </tr>
+  </tbody>
+</table>
+

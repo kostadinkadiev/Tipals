@@ -32,6 +32,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.travis.yml = .travis.yml
 	EndProjectSection
 EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "Odds.Spider", "src\Jobs\Odds\Odds.Spider\Odds.Spider.pyproj", "{4CD518D3-16AA-4243-BC46-A5FFF94E076F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -49,6 +51,8 @@ Global
 		{F618A231-5500-4704-B1C8-E99A6B5E7CE2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{F618A231-5500-4704-B1C8-E99A6B5E7CE2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F618A231-5500-4704-B1C8-E99A6B5E7CE2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4CD518D3-16AA-4243-BC46-A5FFF94E076F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4CD518D3-16AA-4243-BC46-A5FFF94E076F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -63,6 +67,7 @@ Global
 		{6CE6FB83-C10E-4CA2-9A4F-772A2E7D151F} = {3DABD7FE-E4AA-4400-A18D-F777C245F6DD}
 		{33EC1587-D022-489C-9734-DEE8FBE79686} = {E544DEA9-CB69-42FA-A81A-131FE2952CFA}
 		{CA8A75F4-B1C9-40C8-9F56-D44A5C107A3F} = {33EC1587-D022-489C-9734-DEE8FBE79686}
+		{4CD518D3-16AA-4243-BC46-A5FFF94E076F} = {CA8A75F4-B1C9-40C8-9F56-D44A5C107A3F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {FBF58BF1-DFFF-41B6-A10A-3F35C5181D56}

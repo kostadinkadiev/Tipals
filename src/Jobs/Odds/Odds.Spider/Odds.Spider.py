@@ -18,11 +18,13 @@ def get_cookies_dict(driver):
         cookies_dict[cookie['name']] = cookie['value']
     return cookies_dict;
 
-def get_Game(url, headers, code):
+def get_Game(url, headers, code, date, time):
     response = requests.post(url, json={'Sifra': code}, headers=headers)
     responseJsons = response.json()
 
     game = { 
+        "Date": date,
+        "Time": time,
         "Home": responseJsons[0]["T"][0]["ParNaziv"].split(':')[0].strip(),
         "Away": responseJsons[0]["T"][0]["ParNaziv"].split(':')[1].strip(),
         "Tips": []
@@ -90,16 +92,20 @@ odds = { "Leagues": [] }
 
 #iterate through each table
 for main_table in main_tables:
-    table_selector = Selector(text=main_table)
+    table_selector = Selector(text = main_table)
 
     #get the league
     league_name = table_selector.xpath('//thead/tr/th[@class="match-name"]/span/text()').extract_first()
     league = { "Name": league_name, "Games": [] }
 
     #get the game codes and iterate throu each
-    codes = table_selector.xpath('//tbody/tr[@class="th-table"]/td[contains(@class,"code")]/span/text()').extract()
-    for code in codes:
-        game = get_Game(url, headers, code)
+    rows = table_selector.xpath('//tbody/tr[@class="th-table"]').extract()
+    for row in rows:
+        row_selector = Selector(text = row)
+        date = row_selector.xpath('//td[contains(@class,"open-table")]/span/text()').extract_first()
+        time = row_selector.xpath('//td[contains(@class,"open-table")]/span/text()').extract()[1]
+        code = row_selector.xpath('//td[contains(@class,"code")]/span/text()').extract_first()
+        game = get_Game(url, headers, code, date, time)
         league["Games"].append(game)
         sleep(5)
 

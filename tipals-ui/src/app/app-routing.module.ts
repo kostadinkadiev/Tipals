@@ -10,6 +10,7 @@ import { BestTipersComponent } from './best-tipers';
 import { MatchDetailsComponent } from './match-details/match-details.component';
 import { TimelineComponent } from './timeline/timeline.component';
 import { BuyTicketsComponent } from './buy-tickets/buy-tickets.component';
+import { UserDetailsComponent } from './user-details/user-details.component';
 
 const routes: Routes = [
   { path: '', canActivate: [AuthGuard], component: HomeComponent
@@ -19,7 +20,8 @@ const routes: Routes = [
       { path: 'bestTipers', component: BestTipersComponent },
       { path: 'home', component: TimelineComponent },
       { path: 'buyTickets', component: BuyTicketsComponent },
-      { path: 'matchDetails/:id', component: MatchDetailsComponent }
+      { path: 'matchDetails/:id', component: MatchDetailsComponent },
+      { path: 'userDetails/:id', component: UserDetailsComponent }
     ]
   },
   { path: 'register', component: RegisterComponent },

@@ -77,7 +77,9 @@ export class NewTicketComponent implements OnInit {
   deleteAll() {
     this.games = [];
   }
-
+  saveTicket(money){
+    
+  }
 
 }
 

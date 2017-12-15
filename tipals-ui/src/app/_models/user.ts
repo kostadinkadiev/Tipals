@@ -3,4 +3,5 @@
     email: string;
     password: string;
     birthdate: Date;
+    followUsersId: Array<number>;
 }

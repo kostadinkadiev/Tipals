@@ -1,3 +1,30 @@
-<p>
-    Best tipers component
-</p>
+<p> Best tipers component </p>
+
+<p> Logiran si kakao {{currentUser.email}} i gi sledish ovie useri:</p>
+
+<ng-container *ngFor="let user of users">
+    <ng-container *ngFor="let followerId of currentUser.followUsersId">
+        <ng-container *ngIf="user.id==followerId">
+            <p>{{user.email}}</p>
+        </ng-container>
+    </ng-container>
+</ng-container>
+
+
+<div class="container">
+    <ul *ngFor="let user of users">
+     <li *ngIf="user.id!=currentUser.id"> 
+        <a (click)="userClick(user.id)" class="col-md-4"> {{user.email}} </a>
+
+        <ng-container *ngIf="isFollowing(user)">
+            <button disabled style="border: 1px solid #999999; background-color: #cccccc; color: #666666; width: 90px"> Following </button>
+        </ng-container>
+
+        <ng-container *ngIf="!isFollowing(user)">
+            <button (click)="followUser(user.id)" style="border: 1px solid #0066cc; background-color: #0099cc; color: #ffffff; width: 90px;">Follow</button>
+        </ng-container>
+
+
+    </li>
+</ul>
+</div>

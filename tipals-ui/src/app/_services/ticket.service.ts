@@ -17,12 +17,18 @@ export class TicketService {
     let game03 = new Game("Marseille - Angers", "Handicap", 8, "Draw (%1% -4)", date01, true);
     let games0: Array<Game> = [game00, game01, game02, game03];
     let games1: Array<Game> = [game00, game01, game03]
+    let games2: Array<Game> = [game01, game02, game03, game00];
 
-    let ticket0 = new Ticket(0, 100, games0);
+    let ticket0 = new Ticket(0, 1, 100, games0);
 
-    let ticket1 = new Ticket(1, 50, games1)
+    let ticket1 = new Ticket(1, 3, 50, games1);
 
-    return[ticket0, ticket1, ticket0, ticket0];
+    let ticket2 = new Ticket(2, 4, 150, games2);
+
+    let ticket3 = new Ticket(3, 5, 150, games2);
+
+
+    return[ticket0, ticket1, ticket2, ticket3];
   }
 
    getAll() {

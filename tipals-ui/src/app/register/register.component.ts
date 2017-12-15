@@ -1,12 +1,11 @@
 ﻿import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+
 import { AlertService, UserService } from '../_services/index';
-import { Validators } from '@angular/forms';
 
 @Component({
-    //moduleId: module.id,
-   // selector: 'reg-comp',
-    templateUrl: './register.component.html'
+    moduleId: module.id.toString(),
+    templateUrl: 'register.component.html'
 })
 
 export class RegisterComponent {
@@ -16,7 +15,7 @@ export class RegisterComponent {
     constructor(
         private router: Router,
         private userService: UserService,
-        private alertService: AlertService) {    }
+        private alertService: AlertService) { }
 
     register() {
         this.loading = true;
@@ -31,5 +30,4 @@ export class RegisterComponent {
                     this.loading = false;
                 });
     }
-
 }

@@ -1,12 +1,15 @@
 <div class="w3-container">
   <ng-container *ngFor="let ticket of tickets; let i = index">
-    <div class="w3-container" style="border-radius: 10px; font-size: small;" [ngStyle]="{'border': ticket.isWin? '1px solid green' : '1px solid red'}">
+    <div id={{ticket.id}} class="w3-container" style="border-radius: 10px; font-size: small;" [ngStyle]=" ticket.isWin ? { 'border':'1px solid green', 'background-color':'lightcyan' } : { 'border': '1px solid red', 'background-color':'mistyrose'}">
 
+      <ng-container *ngFor="let user of users">
+          <h3 *ngIf="user.id === ticket.userId" (click)="userClick(user.id)" style="cursor: pointer" class="pull-left">Ticket by {{user.email}}</h3>
+      </ng-container>
+        
       <ng-container *ngFor="let game of ticket.games; let j = index">
-        <div class="w3-container">
-          <ng-container *ngIf="j < 3" style="display:hiden">
-            <div id={{i}}>
-
+        <div class="w3-container" id="{{ticket.id}}" [hidden]="j >= 3 && !showMoreClicked[i]">
+          <ng-container>
+            <div>
               <div class="row">
                 <h4 style="font-weight: bold" class="pull-left">{{game.matchName}}</h4>
                 <h4 style="font-size: small" class="pull-right">{{game.startDate| date:'dd.MMM.y HH:mm'}}</h4>
@@ -23,7 +26,7 @@
             </div>
           </ng-container>
         </div>
-        <h4 *ngIf="j >= 3" (click)="ShowMore(i)" style="cursor: pointer">Show More</h4>
+        <h4 *ngIf="j >= 3" [hidden]="showMoreClicked[i]" (click)="ShowMore(i)" style="cursor: pointer"> Show More </h4>
       </ng-container>
 
 

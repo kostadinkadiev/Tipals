@@ -27,6 +27,7 @@ import { BiltenComponent } from './new-ticket/bilten.component';
 import { TimelineComponent } from './timeline/timeline.component';
 import { BuyTicketsComponent } from './buy-tickets/buy-tickets.component';
 import { FilterBetsPipe } from './new-ticket/filter-bets.pipe';
+import { UserDetailsComponent } from './user-details/user-details.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { FilterBetsPipe } from './new-ticket/filter-bets.pipe';
     BiltenComponent,
     TimelineComponent,
     BuyTicketsComponent,
-    FilterBetsPipe
+    FilterBetsPipe,
+    UserDetailsComponent
   ],
   imports: [
     BrowserModule,

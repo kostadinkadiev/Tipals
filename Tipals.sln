@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26730.16
+VisualStudioVersion = 15.0.27130.2003
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{E544DEA9-CB69-42FA-A81A-131FE2952CFA}"
 EndProject
@@ -27,12 +27,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Jobs", "Jobs", "{33EC1587-D
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Odds", "Odds", "{CA8A75F4-B1C9-40C8-9F56-D44A5C107A3F}"
 EndProject
-Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "OddsCrawler", "src\Jobs\Odds\OddsCrawler\OddsCrawler.pyproj", "{19699708-FB76-49FC-9D27-00E783B013D4}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{01BE3BA0-2AF3-49AF-BBF9-B43E200B709A}"
 	ProjectSection(SolutionItems) = preProject
 		.travis.yml = .travis.yml
 	EndProjectSection
+EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "Odds.Spider", "src\Jobs\Odds\Odds.Spider\Odds.Spider.pyproj", "{4CD518D3-16AA-4243-BC46-A5FFF94E076F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,8 +51,8 @@ Global
 		{F618A231-5500-4704-B1C8-E99A6B5E7CE2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{F618A231-5500-4704-B1C8-E99A6B5E7CE2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F618A231-5500-4704-B1C8-E99A6B5E7CE2}.Release|Any CPU.Build.0 = Release|Any CPU
-		{19699708-FB76-49FC-9D27-00E783B013D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{19699708-FB76-49FC-9D27-00E783B013D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4CD518D3-16AA-4243-BC46-A5FFF94E076F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4CD518D3-16AA-4243-BC46-A5FFF94E076F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -67,7 +67,7 @@ Global
 		{6CE6FB83-C10E-4CA2-9A4F-772A2E7D151F} = {3DABD7FE-E4AA-4400-A18D-F777C245F6DD}
 		{33EC1587-D022-489C-9734-DEE8FBE79686} = {E544DEA9-CB69-42FA-A81A-131FE2952CFA}
 		{CA8A75F4-B1C9-40C8-9F56-D44A5C107A3F} = {33EC1587-D022-489C-9734-DEE8FBE79686}
-		{19699708-FB76-49FC-9D27-00E783B013D4} = {CA8A75F4-B1C9-40C8-9F56-D44A5C107A3F}
+		{4CD518D3-16AA-4243-BC46-A5FFF94E076F} = {CA8A75F4-B1C9-40C8-9F56-D44A5C107A3F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {FBF58BF1-DFFF-41B6-A10A-3F35C5181D56}

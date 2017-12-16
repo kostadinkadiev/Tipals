@@ -50,9 +50,9 @@ driver.get('http://sportlife.com.mk/Oblozuvanje')
 sleep(5)
 
 #select EN language
-languages_ddl = driver.find_element_by_xpath('//*[@id="ddlLanguages"]/option[text()="EN"]')
-languages_ddl.click()
-sleep(5)
+#languages_ddl = driver.find_element_by_xpath('//*[@id="ddlLanguages"]/option[text()="EN"]')
+#languages_ddl.click()
+#sleep(5)
 
 #select the sport checkbox
 sport_checkbox = driver.find_element_by_xpath('//*[@id="chkSportT0"]')

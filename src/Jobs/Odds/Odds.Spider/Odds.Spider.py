@@ -1,5 +1,5 @@
 #imports
-import json, requests
+import json, requests, os, git
 
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
@@ -7,8 +7,7 @@ from selenium.webdriver.common.keys import Keys
 from parsel import Selector
 from time import sleep
 
-from azure.storage.blob import BlockBlobService
-from azure.storage.blob import PublicAccess
+from shutil import copyfile
 
 #helpers
 def get_cookies_dict(driver):
@@ -36,7 +35,7 @@ def get_Game(url, headers, code, date, time):
             tip = {
                 "Name": responseTip["IgraNaziv"],
                 "Description": responseTip["TipOpisMK"],
-                "Tip": responseTip["TipPecatiWeb"],
+                "Choice": responseTip["TipPecatiWeb"],
                 "Odd": responseTip["Kvota"]
             }
             game["Tips"].append(tip)
@@ -116,12 +115,32 @@ for main_table in main_tables:
 with open('odds.json', 'w') as odds_file:
     json.dump(odds, odds_file, indent = 4)
 
+
 #upload to azure blob
-block_blob_service = BlockBlobService(account_name='tipals', account_key='tZtOheZGoZ2QwGO1s/TUKIJKJ+HwiT3FYPDjSUWaKt1C2lnOx1rTkBl0c42AGjImOjLTGUWmooblhGLCORHvmw==')
-block_blob_service.create_blob_from_path(
-    'public',
-    'odds.json',
-    'odds.json')
+#block_blob_service = BlockBlobService(account_name='tipals', account_key='tZtOheZGoZ2QwGO1s/TUKIJKJ+HwiT3FYPDjSUWaKt1C2lnOx1rTkBl0c42AGjImOjLTGUWmooblhGLCORHvmw==')
+#block_blob_service.create_blob_from_path(
+#    'public',
+#    'odds.json',
+#    'odds.json')
+
+
+#pull newest version
+current_directory_path = os.path.dirname(os.path.realpath(__file__))
+odds_json_path = "tipals-ui/src/odds/odds.json"
+
+repo = git.Repo("../../../../")
+origin = repo.remotes.origin
+repo.create_head('master', origin.refs.master).set_tracking_branch(origin.refs.master)
+origin.pull()
+
+#copy odds.json to destination
+copyfile(current_directory_path + "/odds.json", "../../../../" + odds_json_path)
+
+#if there are changes commit and push the file
+if(repo.is_dirty()):
+    repo.index.add([odds_json_path])
+    repo.index.commit("Auto-Update of odds.json")
+    origin.push()
 
 print('Done..')
 #SCRIPT END

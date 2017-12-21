@@ -10,7 +10,9 @@
       "outDir": "dist",
       "assets": [
         "assets",
-        "favicon.ico"
+        "favicon.ico",
+        "odds.json",
+        "odds"
       ],
       "index": "index.html",
       "main": "main.ts",

@@ -1,7 +1,7 @@
 import { Injectable, EventEmitter } from '@angular/core';
 import { Http, Headers, RequestOptions, Response } from '@angular/http';
 
-import { Match, Choice, Bets, Game } from '../_models/index';
+import { Match, Choice, Bets, Game_old } from '../_models/index';
 
 @Injectable()
 export class MatchesService {
@@ -10,9 +10,9 @@ export class MatchesService {
 
     public pushedMatch: EventEmitter<Match> = new EventEmitter<Match>();
     public pushedChoice: EventEmitter<Choice> = new EventEmitter<Choice>();
-    public pushedGame: EventEmitter<Game> = new EventEmitter<Game>();
+    public pushedGame: EventEmitter<Game_old> = new EventEmitter<Game_old>();
 
-    pushGame(game: Game) {
+    pushGame(game: Game_old) {
         this.pushedGame.emit(game);
     }
     pushChoice(choice: Choice) {

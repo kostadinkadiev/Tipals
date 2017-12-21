@@ -1,5 +1,5 @@
 import { Component, Input, OnInit, OnChanges, SimpleChanges } from '@angular/core';
-import { Match, Choice, Game } from '../_models/index';
+import { Match, Choice, Game_old } from '../_models/index';
 import { MatchesService } from '../_services/index';
 
 @Component({
@@ -9,11 +9,11 @@ import { MatchesService } from '../_services/index';
 })
 export class NewTicketComponent implements OnInit {
 
-  games = new Array<Game>();
+  games = new Array<Game_old>();
   totalCoeficient = 1;
   index: number;
   //flag: boolean;
-  game: Game;
+  game: Game_old;
 
   constructor(private matchesService: MatchesService) { }
 

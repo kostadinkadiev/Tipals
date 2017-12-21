@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Game, Match } from '../_models/index';
+import { Game_old, Match } from '../_models/index';
 import { Router } from '@angular/router';
 import { MatchesService } from '../_services/index';
 import { FilterBetsPipe } from './filter-bets.pipe';
@@ -13,7 +13,7 @@ import { FilterBetsPipe } from './filter-bets.pipe';
 })
 export class BiltenComponent implements OnInit {
 
-  selectedGame: Game;
+  selectedGame: Game_old;
   matches = new Array<Match>();
   leagues = new Array<string>();
   index: number;
@@ -42,7 +42,7 @@ export class BiltenComponent implements OnInit {
   }
 
   onSend(match, choice, bet) {
-    this.selectedGame = new Game(match.name, choice.name, choice.odd, bet.name, match.startDate, false);
+    this.selectedGame = new Game_old(match.name, choice.name, choice.odd, bet.name, match.startDate, false);
   }
 
   selectTab(tab, selectedTab) {

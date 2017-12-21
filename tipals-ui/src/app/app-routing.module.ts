@@ -28,7 +28,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   
   // otherwise redirect to home
-  { path: '**', redirectTo: 'home' }
+  //{ path: '**', redirectTo: 'home' }
 ];
 
  export const routing = RouterModule.forRoot(routes);

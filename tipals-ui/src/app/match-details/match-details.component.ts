@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy, OnChanges } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MatchesService } from '../_services/index';
-import { Match, Bets, Choice, Game } from '../_models/index';
+import { Match, Bets, Choice, Game_old } from '../_models/index';
 import { Subscription } from "rxjs/Rx";
 declare var $: any;
 
@@ -17,7 +17,7 @@ export class MatchDetailsComponent implements OnDestroy, OnInit {
   match: Match;
   router: Router;
   matches = new Array<Match>();
-  selectedGame: Game;
+  selectedGame: Game_old;
 
   //private value = "dispatcher component value";
 
@@ -33,7 +33,10 @@ export class MatchDetailsComponent implements OnDestroy, OnInit {
   }
 
   ngOnInit() {
-    this.matches = this.matchesService.getAll();
+
+    
+    //STARI UTAKMICI NA RAKA VNESENI
+    // this.matches = this.matchesService.getAll();
   }
 
   betClick(id) {
@@ -53,7 +56,7 @@ export class MatchDetailsComponent implements OnDestroy, OnInit {
   }
 
 onSend(match, choice, bet) {
-    this.selectedGame = new Game(match.name, bet.name, choice.odd, choice.name, match.startDate, false);
+    this.selectedGame = new Game_old(match.name, bet.name, choice.odd, choice.name, match.startDate, false);
     this.matchesService.pushGame(this.selectedGame);
   }
 

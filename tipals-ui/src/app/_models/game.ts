@@ -1,26 +1,20 @@
-export class Game {
-    matchName: string;
-    betName: string;
-    choiceOdd: number;
-    choiceName: string;
-    startDate: Date;
-    isWin: boolean;
-    //  constructor(matchName: string, betName: string, choiceOdd: number, choiceName: string, startDate: Date) 
-    //     { 
-    //         this.matchName = matchName; 
-    //         this.betName = betName;
-    //         this.choiceOdd = choiceOdd;
-    //         this.choiceName = choiceName;
-    //         this.startDate = startDate;
-    //     }
+import { Tip } from '../_models/tip';
+import { Data } from '@angular/router/src/config';
+import { Time } from '@angular/common/src/i18n/locale_data_api';
 
-        constructor(matchName: string, betName: string, choiceOdd: number, choiceName: string, startDate: Date, isWin: boolean) 
+export class Game {
+    Date: Date;
+    Time: Time;
+    Home: string;
+    Away: string;
+    Tips: Array<Tip>;
+    
+    constructor(theDate: Date, theTime: Time, theHome: string, theAway: string, theTips: Array<Tip>) 
         { 
-            this.matchName = matchName; 
-            this.betName = betName;
-            this.choiceOdd = choiceOdd;
-            this.choiceName = choiceName;
-            this.startDate = startDate;
-            this.isWin = isWin;
+            this.Date = theDate; 
+            this.Time = theTime;
+            this.Home = theHome; 
+            this.Away = theAway;
+            this.Tips = theTips;
         }
-  }
+}

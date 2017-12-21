@@ -1,6 +1,6 @@
 <div class="w3-container">
   <ng-container *ngFor="let ticket of tickets; let i = index">
-    <div id={{ticket.id}} class="w3-container" style="border-radius: 10px; font-size: small;" [ngStyle]=" ticket.isWin ? { 'border':'1px solid green', 'background-color':'lightcyan' } : { 'border': '1px solid red', 'background-color':'mistyrose'}">
+<div id={{ticket.id}} class="w3-container" style="border-radius: 10px; font-size: small;" [ngStyle]=" ticket.isWin ? { 'border':'1px solid green', 'background-color':'lightcyan' } : { 'border': '1px solid red', 'background-color':'mistyrose'}">    
 
       <ng-container *ngFor="let user of users">
           <h3 *ngIf="user.id === ticket.userId" (click)="userClick(user.id)" style="cursor: pointer" class="pull-left">Ticket by {{user.email}}</h3>
@@ -49,3 +49,10 @@
     <br>
   </ng-container>
 </div>
+
+<!-- <ul>  
+   <li *ngFor="let Leagues of someArray.Leagues">
+    {{ Leagues.name | async}}
+  </li> 
+<ul> 
+ -->

@@ -1,7 +1,7 @@
 ﻿import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { User, Match, Bets, Choice, Game } from '../_models/index';
-import { UserService, MatchesService } from '../_services/index';
+import { User, Match, Bets, Choice, Game, League } from '../_models/index';
+import { UserService, MatchesService, TicketService } from '../_services/index';
 import { HeaderComponent } from './header.component';
 import { NewTicketComponent } from '../new-ticket/new-ticket.component';
 
@@ -10,26 +10,35 @@ import { NewTicketComponent } from '../new-ticket/new-ticket.component';
 })
 
 export class HomeComponent implements OnInit {
+    json: any;
+    Leagues = new Array<League>();
     currentUser: User;
     users: User[] = [];
     matches = new Array<Match>();
     leagues = new Array<string>();
     index: number;
 
-    constructor(private userService: UserService, private route: ActivatedRoute, private router: Router, private matchesService: MatchesService) {
+    constructor(private ticketService: TicketService, private userService: UserService, private route: ActivatedRoute, private router: Router, private matchesService: MatchesService) {
         this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     }
 
     ngOnInit() {
         this.loadAllUsers();
 
-        this.matches = this.matchesService.getAll();
+        this.json = this.ticketService.getJSON();
+        this.json.subscribe((someArray: any[]) => {
+          this.Leagues = someArray;
+          console.log(this.Leagues);
+        });
+
+        //STARIOT KOD SO UTAKMICI NA RAKA VNESUVANI
+        /* this.matches = this.matchesService.getAll();
 
         for (var i = 0; i < this.matches.length; i++) {
             this.index = this.leagues.findIndex(e => e == this.matches[i].leagueName);
             if (this.index == -1)
                 this.leagues.push(this.matches[i].leagueName);
-        }
+        } */
     }
 
     deleteUser(id: number) {
@@ -57,8 +66,8 @@ export class HomeComponent implements OnInit {
         }
     }
 
-    gameClick(match) {
-        this.router.navigate(['./matchDetails/' + match.id]);
+    gameClick(LeagueName, GameHome, GameAway) {
+        this.router.navigate(['./matchDetails/'+ LeagueName + ':' + GameHome +'-'+ GameAway]);
     }
 
 

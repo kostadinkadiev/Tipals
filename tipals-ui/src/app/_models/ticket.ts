@@ -1,4 +1,4 @@
-import { Game } from '../_models';
+import { Game, Game_old } from '../_models';
 
 export class Ticket {
     id: number;
@@ -6,8 +6,8 @@ export class Ticket {
     bet: number;
     totalCoeficient: number;
     isWin: boolean;
-    games: Array<Game>;
-    constructor(id: number, userId:number, bet: number, games: Array<Game>) 
+    games: Array<Game_old>;
+    constructor(id: number, userId:number, bet: number, games: Array<Game_old>) 
         { 
             this.id = id;
             this.userId = userId;

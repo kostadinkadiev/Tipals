@@ -1,12 +1,41 @@
-<div *ngIf="!theGame">
-  <<=ОДБЕРЕТЕ НАТПРЕВАР </div>
+<h1 *ngIf="!theGame" style="text-align: center; color: #363636; font-weight: bold">
+  <br>
+  <br>
+  <br> ОДБЕРЕТЕ НАТПРЕВАР </h1>
 
 
-    <div *ngIf="theGame">
+<div *ngIf="theGame">
 
-      <h3 style="text-align: center; color: #363636; font-weight: bold">{{theGame.Home}} - {{theGame.Away}}</h3>
-      <h6 style="text-align: center; color: #363636; font-weight: bold">{{theGame.Date}} - {{theGame.Time}}h</h6>
+  <h3 style="text-align: center; color: #363636; font-weight: bold">{{theGame.Home}} - {{theGame.Away}}</h3>
+  <h6 style="text-align: center; color: #363636; font-weight: bold">{{theGame.Date}} - {{theGame.Time}}h</h6>
 
+  <ng-container *ngFor="let Tip of tipsResult; index as i">
+
+    <button (click)="tipClick(Tip[0].Name)" class="w3-button w3-block w3-theme-l1 w3-left-align" style="cursor: pointer; margin: 5px">
+      {{Tip[0].Name}}
+      <i class="fa fa-plus pull-right"></i>
+    </button>
+
+    <ng-container *ngFor="let Choice of Tip; index as j">
+      <div class="{{Tip[0].Name}}{{Tip[0].Name.length}} w3-hide w3-container w3-animate-opacity text-center">
+
+        <button class="w3-button w3-block w3-theme-l4 text-center col-xs-12" (click)="onSend(theGame, Choice)" style="cursor: pointer; margin: 5px"
+          data-toggle="tooltip" data-placement="right" title="{{Choice.Description}}">
+          <div style="float: left">{{Choice.Choice}}</div>
+          <div style="float: right; color: rgb(0, 97, 0)">Коефициент: {{Choice.Odd | number:'1.2-2'}}</div>
+
+        </button>
+
+      </div>
+    </ng-container>
+
+  </ng-container>
+
+</div>
+<!-- 
+      <br>
+      <br>
+      <br>
       <ng-container *ngFor="let Tip of theGame.Tips; index as i">
 
         <button *ngIf="i===0" (click)="tipClick(Tip.Name)" class="w3-button w3-block w3-theme-l1 w3-left-align" style="cursor: pointer; margin: 5px">
@@ -30,5 +59,4 @@
           </button>
 
         </div>
-      </ng-container>
-    </div>
+      </ng-container> -->

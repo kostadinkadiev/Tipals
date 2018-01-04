@@ -1,5 +1,4 @@
 <!-- Navbar -->
-<!-- <div class="w3-top" style="width: 82%"> -->
   <div class="w3-bar w3-theme-d2 w3-left-align w3-large" style="border: 1px solid #3a4b53">
 
     <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-theme-d2" (click)="openNav()">
@@ -18,11 +17,17 @@
       title="Buy Tickets"> Buy Tickets </a>
  
 
-    
-    
-    <a #selectedLink4 id="/login" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white float-right" (click)="selectLink(selectedLink4)"
-      [routerLink]="['/login']" title="Logout"> Logout </a>
-      <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white float-right" title="email">{{currentUser.email}}</a>
+    <a class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white float-right" [routerLink]="['/login']" title="Logout"> Logout </a>
+    <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white float-right" title="email">{{currentUser.email}}</a>
+
+    <div class="w3-dropdown-hover w3-hide-small float-right">
+      <button class="w3-button w3-padding-large" title="Account Settings"><i class="fa fa-user"></i></button>     
+      <div class="w3-dropdown-content w3-card-4 w3-bar-block">
+        <a href="#" class="w3-bar-item w3-button w3-theme-d2 w3-hover-white">{{currentUser.email}}</a>
+        <a href="#" class="w3-bar-item w3-button w3-theme-d2 w3-hover-white">Account Settings</a>
+        <a [routerLink]="['/login']" class="w3-bar-item w3-button w3-theme-d2 w3-hover-white">Logout</a>
+      </div>
+    </div>
 
     </div>
 <!-- </div> -->
@@ -37,36 +42,8 @@
   <a #selectedLink8 id="/buyTicketsSmall" (click)="selectLink(selectedLink8)" [routerLink]="['/buyTickets']" class="w3-bar-item w3-button w3-padding-large w3-hover-white">
     Buy Ticket </a>
     <a href="#" class="w3-bar-item w3-button w3-padding-large w3-hover-white">{{currentUser.email}}</a>
-  <a #selectedLink9 id="/loginSmall" (click)="selectLink(selectedLink9)" [routerLink]="['/login']" class="w3-bar-item w3-button w3-padding-large w3-hover-white"
-    title="Logout"> Logout </a>
+  <a [routerLink]="['/login']" class="w3-bar-item w3-button w3-padding-large w3-hover-white" title="Logout"> Logout </a>
 
 </div>
 
 <br>
-
-
-
-<!--<nav class="navbar navbar-default">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-    </div>
-
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
-        <li><a #selectedLink1 id="0" (click)="selectLink(selectedLink1)" [routerLink]="['/home']"> Home </a></li>
-        <li><a #selectedLink2 id="1" (click)="selectLink(selectedLink2)" [routerLink]="['/newTicket']"> Make new Ticket </a></li>
-        <li><a #selectedLink3 id="2" (click)="selectLink(selectedLink3)" [routerLink]="['/bestTipers']"> Best Tipers </a></li>    
-        <li><a #selectedLink4 id="3" (click)="selectLink(selectedLink4)" [routerLink]="['/buyTickets']"> Buy Tickets </a></li>  
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <li><a [routerLink]="['/login']">Logout</a></li>
-      </ul>
-    </div>
-  </div>
-</nav>-->

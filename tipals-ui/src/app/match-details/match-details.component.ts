@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnChanges, OnInit, ChangeDetectorRef } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { MatchesService, clickedGame, clickedTip, activateHeader } from '../_services/index';
-import { Match, Bets, Choice, Game_old, Game, ticketGame } from '../_models/index';
+import { MatchesService, clickedGame, clickedTip } from '../_services/index';
+import { Match, Bets, Choice, Game_old, Game, ticketGame, Tip } from '../_models/index';
 import { Subscription } from "rxjs/Rx";
 import { elementAt } from 'rxjs/operator/elementAt';
 import { groupBy } from 'rxjs/operator/groupBy';
@@ -22,10 +22,11 @@ export class MatchDetailsComponent implements OnDestroy, OnInit {
   selectedGame: ticketGame;
   theGame: Game;
   uniqueTipsName: any;
+  tipsResult = new Array<Tip>();
 
 
 
-  constructor(private activateHeader: activateHeader, private activatedRoute: ActivatedRoute, private clickedTip: clickedTip, private clickedGame: clickedGame, private router: Router) {
+  constructor(private activatedRoute: ActivatedRoute, private clickedTip: clickedTip, private clickedGame: clickedGame, private router: Router) {
 
   }
 
@@ -37,11 +38,28 @@ export class MatchDetailsComponent implements OnDestroy, OnInit {
 
     this.theGame = this.clickedGame.getClickedGame();
     this.clickedGame.eventSetClickedGame.subscribe(
-      data => this.theGame = data)
+      data => {
+      this.theGame = data;
+      this.tipsResult = this.groupBy(this.theGame.Tips, function(item)
+      {
+        return [item.Name];
+      });
+/*       console.log(this.theGame);
+      console.log(this.tipsResult); */
+      })
 
-  /*   this.activateHeader.setLink(this.router.url);
-    this.activateHeader.setLink(this.router.url+"Small"); */
+  }
 
+  groupBy(array, f) {
+    var groups = {};
+    array.forEach(function (o) {
+      var group = JSON.stringify(f(o));
+      groups[group] = groups[group] || [];
+      groups[group].push(o);
+    });
+    return Object.keys(groups).map(function (group) {
+      return groups[group];
+    })
   }
 
   tipClick(id) {
@@ -59,6 +77,7 @@ export class MatchDetailsComponent implements OnDestroy, OnInit {
 
     }
   }
+
   onSend(theGame, Tip) {
     this.selectedGame = new ticketGame(theGame.Date, theGame.Time, theGame.Home, theGame.Away, Tip.Name, Tip.Description, Tip.Choice, Tip.Odd);
     this.clickedTip.setClickedTip(this.selectedGame);

@@ -4,75 +4,41 @@
 
     <!-- Page Container -->
     <div class="container w3-content" style="max-width:1400px;margin-top:1px">
+        
         <!-- The Grid -->
         <div class="row">
+
             <!-- Left Column -->
             <div class="col-lg-3">
-
-
-                <div class="w3-card-2 w3-round">
-                    <div class="w3-white">
-                        <ng-container *ngFor="let League of Leagues.Leagues; let i=index">
-                            <button (click)="leagueClick(League.Name)" class="w3-button w3-block w3-theme-l1 w3-left-align"> {{League.Name}} <i class="fa fa-plus pull-right"></i></button>
-                            <div id={{League.Name}} class="w3-hide w3-container w3-animate-opacity">
-                                <ng-container *ngFor="let Game of League.Games">
-                                        <button class="w3-button w3-block w3-theme-l1 w3-left-align" style="cursor: pointer; font-size:small; margin: 5px" (click)="gameClick(Game)">{{Game.Home}} - {{Game.Away}}</button>
-                                </ng-container>
-                            </div>
+                <ng-container *ngFor="let League of Leagues.Leagues; let i=index">
+                    <button (click)="leagueClick(League.Name)" class="w3-button w3-block w3-theme-l1 w3-left-align"> {{League.Name}}
+                        <i class="fa fa-plus pull-right"></i>
+                    </button>
+                    <div id={{League.Name}} class="w3-hide w3-container w3-animate-opacity">
+                        <ng-container *ngFor="let Game of League.Games">
+                            <button class="w3-button w3-block w3-theme-l1 w3-left-align" style="cursor: pointer; font-size:small; margin: 5px" (click)="gameClick(Game)">{{Game.Home}} - {{Game.Away}}</button>
                         </ng-container>
-
                     </div>
-                </div> 
-
-
-                <br>
-
-
-
-                <!-- End Left Column -->
+                </ng-container>
             </div>
+            <!-- End Left Column -->
 
             <!-- Middle Column -->
-
-            <div class="col-lg-6">
-
-                <div class="w3-row-padding">
-                    <div class="col-md-12">
-                        <div class="w3-card-2 w3-round w3-white">
-                            <div class="w3-container w3-padding">
-                                <router-outlet></router-outlet>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <div class="col-lg-6 col-md-12 container">
+                <router-outlet></router-outlet>
             </div>
-
-
             <!-- End Middle Column -->
 
-
             <!-- Right Column -->
-            <div class="col-lg-3">
-                <!-- Kodo na TOME -->
-                <div class="w3-card-2 w3-round w3-white w3-center">
-                    <div class="w3-container">
-                        <app-new-ticket></app-new-ticket>
-                    </div>
-                </div>
-                <!-- End Right Column -->
+            <div class="col-lg-3 container w3-center">
+                <app-new-ticket></app-new-ticket>
             </div>
+            <!-- End Right Column -->
 
-
-
-
-            <!-- End Grid -->
         </div>
+        <!-- End Grid -->
 
-        <!-- End Page Container -->
     </div>
-    <br>
-
-
-
+    <!-- End Page Container -->
 
 </div>

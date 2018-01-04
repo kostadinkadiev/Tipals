@@ -44,8 +44,8 @@ export class MatchDetailsComponent implements OnDestroy, OnInit {
       {
         return [item.Name];
       });
-/*       console.log(this.theGame);
-      console.log(this.tipsResult); */
+/*       console.log(this.theGame);*/
+      console.log(this.tipsResult); 
       })
 
   }

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgIf } from '@angular/common';
 import { TicketService, UserService } from '../_services/index';
-import { Ticket, Game_old, User, League } from '../_models/index';
+import { Ticket_Old, Game_old, User, League } from '../_models/index';
 declare var $:JQueryStatic;
 
 @Component({
@@ -15,7 +15,7 @@ export class TimelineComponent implements OnInit {
 
 
   users: User[] = [];
-  tickets = new Array<Ticket>();
+  tickets = new Array<Ticket_Old>();
   showMoreClicked = new Array<boolean>(this.tickets.length);
 
   constructor(private ticketService: TicketService, private userService: UserService, private route: ActivatedRoute, private router: Router) { }

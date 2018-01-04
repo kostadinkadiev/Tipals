@@ -1,30 +1,48 @@
+<!-- Navbar -->
+<!-- <div class="w3-top" style="width: 82%"> -->
+  <div class="w3-bar w3-theme-d2 w3-left-align w3-large" style="border: 1px solid #3a4b53">
 
- <!-- Navbar -->
- <nav class="navbar navbar-expand-lg navbar-light bg-light">
- <div class="w3-bar w3-theme-d2 w3-left-align w3-large">
-  <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-theme-d2" (click)="openNav()"><i class="fa fa-bars"></i></a>
-  <a href="#" class="w3-bar-item w3-button w3-padding-large w3-theme-d4"><i class="fa fa-home w3-margin-right"></i>Tipals</a>
-  <a #selectedLink0 id="0" (click)="selectLink(selectedLink0)" [routerLink]="['/home']" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Home"> Home </a>
-  <a #selectedLink1 id="1" (click)="selectLink(selectedLink1)" [routerLink]="['/newTicket']" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Make new Ticket"> Make new Ticket </a>
-  <a #selectedLink2 id="2" (click)="selectLink(selectedLink2)" [routerLink]="['/bestTipers']" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Best Tipers"> Best Tipers </a>
-  <a #selectedLink3 id="3" (click)="selectLink(selectedLink3)" [routerLink]="['/buyTickets']" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Buy Tickets"> Buy Tickets </a>
-  
-  <form class="form-inline my-2 my-md-0">
-    <a #selectedLink4 id="4" (click)="selectLink(selectedLink4)" [routerLink]="['/login']" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Logout"> Logout </a>
-  </form>
+    <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-theme-d2" (click)="openNav()">
+      <i class="fa fa-bars"></i>
+    </a>
 
-  
- </div>
-</nav>
+    <a #selectedLink0 id="/home" (click)="selectLink(selectedLink0)" [routerLink]="['/home']" class="w3-bar-item w3-button w3-padding-large w3-theme-d4 w3-hover-white">
+      <i class="fa fa-home w3-margin-right"></i>Tipals</a>
+<!--     <a #selectedLink0 id="/home" (click)="selectLink(selectedLink0)" [routerLink]="['/home']" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white"
+      title="Home"> Home </a> -->
+    <a #selectedLink1 id="/matchDetails" (click)="selectLink(selectedLink1)" [routerLink]="['/matchDetails']" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white"
+      title="Make new Ticket"> Make new Ticket </a>
+    <a #selectedLink2 id="/bestTipers" (click)="selectLink(selectedLink2)" [routerLink]="['/bestTipers']" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white"
+      title="Best Tipers"> Best Tipers </a>
+    <a #selectedLink3 id="/buyTickets" (click)="selectLink(selectedLink3)" [routerLink]="['/buyTickets']" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white"
+      title="Buy Tickets"> Buy Tickets </a>
+ 
+
+    
+    
+    <a #selectedLink4 id="/login" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white float-right" (click)="selectLink(selectedLink4)"
+      [routerLink]="['/login']" title="Logout"> Logout </a>
+      <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white float-right" title="email">{{currentUser.email}}</a>
+
+    </div>
+<!-- </div> -->
 
 <!-- Navbar on small screens -->
 <div id="navDemo" class="w3-bar-block w3-theme-d2 w3-hide w3-hide-large w3-hide-medium w3-large">
-  <a #selectedLink0 id="0" (click)="selectLink(selectedLink0)" [routerLink]="['/home']" class="w3-bar-item w3-button w3-padding-large"> Home </a>
-  <a #selectedLink1 id="1" (click)="selectLink(selectedLink1)" [routerLink]="['/newTicket']" class="w3-bar-item w3-button w3-padding-large"> Make new Ticket </a>
-  <a #selectedLink2 id="2" (click)="selectLink(selectedLink2)" [routerLink]="['/bestTipers']" class="w3-bar-item w3-button w3-padding-large"> Best Tipers </a>
-  <a #selectedLink3 id="3" (click)="selectLink(selectedLink3)" [routerLink]="['/buyTickets']" class="w3-bar-item w3-button w3-padding-large"> Buy Ticket </a>
-  <a #selectedLink4 id="4" (click)="selectLink(selectedLink4)" [routerLink]="['/login']" class="w3-bar-item w3-button w3-hide-small w3-right w3-padding-large w3-hover-white" title="Logout"> Logout </a>
+  
+  <a #selectedLink6 id="/matchDetailsSmall" (click)="selectLink(selectedLink6)" [routerLink]="['/matchDetails']" class="w3-bar-item w3-button w3-padding-large w3-hover-white">
+    Make new Ticket </a>
+  <a #selectedLink7 id="/bestTipersSmall" (click)="selectLink(selectedLink7)" [routerLink]="['/bestTipers']" class="w3-bar-item w3-button w3-padding-large w3-hover-white">
+    Best Tipers </a>
+  <a #selectedLink8 id="/buyTicketsSmall" (click)="selectLink(selectedLink8)" [routerLink]="['/buyTickets']" class="w3-bar-item w3-button w3-padding-large w3-hover-white">
+    Buy Ticket </a>
+    <a href="#" class="w3-bar-item w3-button w3-padding-large w3-hover-white">{{currentUser.email}}</a>
+  <a #selectedLink9 id="/loginSmall" (click)="selectLink(selectedLink9)" [routerLink]="['/login']" class="w3-bar-item w3-button w3-padding-large w3-hover-white"
+    title="Logout"> Logout </a>
+
 </div>
+
+<br>
 
 
 

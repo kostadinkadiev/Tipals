@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Injectable } from '@angular/core';
-import { Ticket, Game_old, League } from '../_models/index';
+import { Ticket_Old, Game_old, League } from '../_models/index';
 import { Http, Headers, RequestOptions, Response } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
@@ -20,8 +20,6 @@ export class TicketService {
   public getJSON(): Observable<any> {
     return this.http.get('./odds/odds.json')
       .map((response: Response) => response.json())
-
-     // .catch(this.handleError);
   }
 
 
@@ -37,13 +35,13 @@ export class TicketService {
     let games1: Array<Game_old> = [game00, game01, game03]
     let games2: Array<Game_old> = [game01, game02, game03, game00];
 
-    let ticket0 = new Ticket(0, 1, 100, games0);
+    let ticket0 = new Ticket_Old(0, 1, 100, games0);
 
-    let ticket1 = new Ticket(1, 3, 50, games1);
+    let ticket1 = new Ticket_Old(1, 3, 50, games1);
 
-    let ticket2 = new Ticket(2, 4, 150, games2);
+    let ticket2 = new Ticket_Old(2, 4, 150, games2);
 
-    let ticket3 = new Ticket(3, 5, 150, games2);
+    let ticket3 = new Ticket_Old(3, 5, 150, games2);
 
 
     return [ticket0, ticket1, ticket2, ticket3];

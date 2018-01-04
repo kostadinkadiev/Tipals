@@ -1,8 +1,11 @@
-import { Component, OnInit, OnDestroy, OnChanges } from '@angular/core';
+import { Component, OnDestroy, OnChanges, OnInit, ChangeDetectorRef } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { MatchesService } from '../_services/index';
-import { Match, Bets, Choice, Game_old } from '../_models/index';
+import { MatchesService, clickedGame, clickedTip, activateHeader } from '../_services/index';
+import { Match, Bets, Choice, Game_old, Game, ticketGame } from '../_models/index';
 import { Subscription } from "rxjs/Rx";
+import { elementAt } from 'rxjs/operator/elementAt';
+import { groupBy } from 'rxjs/operator/groupBy';
+
 declare var $: any;
 
 @Component({
@@ -15,49 +18,50 @@ export class MatchDetailsComponent implements OnDestroy, OnInit {
   private subscription: Subscription;
   id: number;
   match: Match;
-  router: Router;
   matches = new Array<Match>();
-  selectedGame: Game_old;
+  selectedGame: ticketGame;
+  theGame: Game;
+  uniqueTipsName: any;
 
-  //private value = "dispatcher component value";
 
-  constructor(private activatedRoute: ActivatedRoute, private matchesService: MatchesService, router: Router) {
-    this.subscription = activatedRoute.params.subscribe(
-      (param: any) => this.id = param['id']
-    );
-    this.router = router;
+
+  constructor(private activateHeader: activateHeader, private activatedRoute: ActivatedRoute, private clickedTip: clickedTip, private clickedGame: clickedGame, private router: Router) {
+
   }
 
   ngOnDestroy() {
-    this.subscription.unsubscribe();
+
   }
 
   ngOnInit() {
 
-    
-    //STARI UTAKMICI NA RAKA VNESENI
-    // this.matches = this.matchesService.getAll();
+    this.theGame = this.clickedGame.getClickedGame();
+    this.clickedGame.eventSetClickedGame.subscribe(
+      data => this.theGame = data)
+
+  /*   this.activateHeader.setLink(this.router.url);
+    this.activateHeader.setLink(this.router.url+"Small"); */
+
   }
 
-  betClick(id) {
-    var x = document.getElementById(id);
-    if (x.className.indexOf("w3-show") == -1) {
-      x.className += " w3-show";
-      x.previousElementSibling.className += " w3-theme-d1";
-      x.previousElementSibling.firstElementChild .className = 
-                x.previousElementSibling.firstElementChild.className.replace(" fa-plus", " fa-minus");
-    } else {
-      x.className = x.className.replace("w3-show", "");
-      x.previousElementSibling.className =
-        x.previousElementSibling.className.replace(" w3-theme-d1", "");
-        x.previousElementSibling.firstElementChild .className = 
-                x.previousElementSibling.firstElementChild.className.replace(" fa-minus", " fa-plus");
+  tipClick(id) {
+    var x = document.getElementsByClassName(id + id.length);
+    for (var i = 0; i < x.length; i++) {
+      if (x[i].className.indexOf("w3-show") == -1) {
+        x[i].className = x[i].className.replace("w3-hide", "w3-show");
+        x[i].previousElementSibling.firstElementChild.className =
+          x[i].previousElementSibling.firstElementChild.className.replace("fa-plus", "fa-minus");
+      } else {
+        x[i].className = x[i].className.replace("w3-show", "w3-hide");
+        x[i].previousElementSibling.firstElementChild.className =
+          x[i].previousElementSibling.firstElementChild.className.replace("fa-minus", "fa-plus");
+      }
+
     }
   }
-
-onSend(match, choice, bet) {
-    this.selectedGame = new Game_old(match.name, bet.name, choice.odd, choice.name, match.startDate, false);
-    this.matchesService.pushGame(this.selectedGame);
+  onSend(theGame, Tip) {
+    this.selectedGame = new ticketGame(theGame.Date, theGame.Time, theGame.Home, theGame.Away, Tip.Name, Tip.Description, Tip.Choice, Tip.Odd);
+    this.clickedTip.setClickedTip(this.selectedGame);
   }
 
 }

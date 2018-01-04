@@ -1,13 +1,13 @@
-﻿<div class="col-md-10 col-md-offset-1">
+﻿<div class="col-lg-10 col-lg-offset-1">
 
     <app-header></app-header>
 
     <!-- Page Container -->
-    <div class="w3-container w3-content" style="max-width:1400px;margin-top:80px">
+    <div class="container w3-content" style="max-width:1400px;margin-top:1px">
         <!-- The Grid -->
-        <div class="w3-row">
+        <div class="row">
             <!-- Left Column -->
-            <div class="w3-col m3">
+            <div class="col-lg-3">
 
 
                 <div class="w3-card-2 w3-round">
@@ -16,46 +16,13 @@
                             <button (click)="leagueClick(League.Name)" class="w3-button w3-block w3-theme-l1 w3-left-align"> {{League.Name}} <i class="fa fa-plus pull-right"></i></button>
                             <div id={{League.Name}} class="w3-hide w3-container w3-animate-opacity">
                                 <ng-container *ngFor="let Game of League.Games">
-                                        <button class="w3-button w3-block w3-theme-l1 w3-left-align" style="cursor: pointer; font-size:small; margin: 5px" (click)="gameClick(League.Name, Game.Home, Game.Away)">{{Game.Home}} - {{Game.Away}}</button>
+                                        <button class="w3-button w3-block w3-theme-l1 w3-left-align" style="cursor: pointer; font-size:small; margin: 5px" (click)="gameClick(Game)">{{Game.Home}} - {{Game.Away}}</button>
                                 </ng-container>
                             </div>
                         </ng-container>
 
                     </div>
                 </div> 
-
-
-                <!-- Tome KOD SAKKAH SE NAEDNOSH DA NAPRAVUM-->
-<!--                 <div class="w3-card-2 w3-round">
-                    <div class="w3-white">
-                        <ng-container *ngFor="let leaguesName of Leagues.Name; let i=index">
-                            <button (click)="leagueClick(leaguesName)" class="w3-button w3-block w3-theme-l1 w3-left-align"> {{leaguesName | async}} <i class="fa fa-plus pull-right"></i></button>
-                            <div id={{leaguesName}} class="w3-hide w3-container w3-animate-opacity">
-                                <ng-container *ngFor="let game of Leagues.Games">
-                                        <button class="w3-button w3-block w3-theme-l1 w3-left-align" style="cursor: pointer; font-size:small; margin: 5px" (click)="gameClick(game)">{{game.Home}} - {{game.Away}}</button>
-                                </ng-container>
-                            </div>
-                        </ng-container>
-
-                    </div>
-                </div> -->
-
-
-<!--                 <div class="w3-card-2 w3-round">
-                    <div class="w3-white">
-                        <ng-container *ngFor="let tab of leagues; let i=index">
-                            <button (click)="leagueClick(tab)" class="w3-button w3-block w3-theme-l1 w3-left-align"> {{tab}} <i class="fa fa-plus pull-right"></i></button>
-                            <div id={{tab}} class="w3-hide w3-container w3-animate-opacity">
-                                <ng-container *ngFor="let match of matches">
-                                    <ng-container *ngIf="match.leagueName == tab">
-                                        <button class="w3-button w3-block w3-theme-l1 w3-left-align" style="cursor: pointer; font-size:small; margin: 5px" (click)="gameClick(match)">{{match.name}}</button>
-                                    </ng-container>
-                                </ng-container>
-                            </div>
-                        </ng-container>
-
-                    </div>
-                </div> -->
 
 
                 <br>
@@ -67,10 +34,10 @@
 
             <!-- Middle Column -->
 
-            <div class="w3-col m6">
+            <div class="col-lg-6">
 
                 <div class="w3-row-padding">
-                    <div class="w3-col m12">
+                    <div class="col-md-12">
                         <div class="w3-card-2 w3-round w3-white">
                             <div class="w3-container w3-padding">
                                 <router-outlet></router-outlet>
@@ -85,7 +52,7 @@
 
 
             <!-- Right Column -->
-            <div class="w3-col m3">
+            <div class="col-lg-3">
                 <!-- Kodo na TOME -->
                 <div class="w3-card-2 w3-round w3-white w3-center">
                     <div class="w3-container">

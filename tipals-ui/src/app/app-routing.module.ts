@@ -20,7 +20,7 @@ const routes: Routes = [
       { path: 'bestTipers', component: BestTipersComponent },
       { path: 'home', component: TimelineComponent },
       { path: 'buyTickets', component: BuyTicketsComponent },
-      { path: 'matchDetails/:id', component: MatchDetailsComponent },
+      { path: 'matchDetails', component: MatchDetailsComponent },
       { path: 'userDetails/:id', component: UserDetailsComponent }
     ]
   },
@@ -28,7 +28,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   
   // otherwise redirect to home
-  //{ path: '**', redirectTo: 'home' }
+  { path: '**', redirectTo: 'home' }
 ];
 
  export const routing = RouterModule.forRoot(routes);

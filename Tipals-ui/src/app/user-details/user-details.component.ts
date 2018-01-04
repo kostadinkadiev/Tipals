@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { NgIf } from '@angular/common';
 import { UserService, TicketService } from '../_services/index';
-import { Ticket, User } from '../_models';
+import { Ticket_Old, User } from '../_models';
 import { Subscription } from "rxjs/Rx";
 
 @Component({
@@ -15,7 +15,7 @@ export class UserDetailsComponent implements OnDestroy, OnInit {
   router: Router;
   userId: number;  
   user: User;
-  tickets = new Array<Ticket>();
+  tickets = new Array<Ticket_Old>();
   currentUser: User;
 
   constructor(private ticketService: TicketService, private userService: UserService, private activatedRoute: ActivatedRoute, router: Router) {

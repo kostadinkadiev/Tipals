@@ -3,7 +3,9 @@ export * from './bets';
 export * from './choice';
 export * from './match';
 export * from './game_old';
-export * from './ticket';
+export * from './ticket_old';
 export * from './league';
 export * from './game';
 export * from './tip';
+export * from './ticketGame';
+export * from './ticket'

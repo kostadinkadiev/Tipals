@@ -1,118 +1,70 @@
-<div *ngIf="games.length > 0">
+<div *ngIf="ticketGames.length > 0">
 
-    <h3> Your Ticket </h3>
+    <div class="w3-container" style="border: 2px solid #7d97a5">
 
-    <ng-container *ngFor="let game of games; let i=index">
+        <h3 style="background-color: #57707d; color: white"> ВАШИОТ ТИКЕТ </h3>
 
-        <div style="font-size:small">
-            <p>{{game.matchName}}</p>
-            <p>{{game.betName}} {{game.choiceName}}</p>
-            <p>Coeficient: {{game.choiceOdd}}</p>
-            <!--<p style="cursor: pointer" (click)="delete(i)">&#10060;</p>-->
-            <p style="cursor: pointer" (click)="delete(i)" ><i class="fa fa-times fa-2x" aria-hidden="true" style="color: red"></i></p>
+        <ng-container *ngFor="let game of ticketGames; let i=index">
+
+            <div style="font-size:small" class="w3-container">
+                <p>{{game.gameHome}} - {{game.gameAway}}</p>
+                <p>{{game.tipName}} {{game.tipChoice}}</p>
+                <p>Коефициент: {{game.tipOdd}}</p>
+                <p style="cursor: pointer" (click)="delete(i)">
+                    <i class="fa fa-times fa-2x" aria-hidden="true" style="color: red"></i>
+                </p>
+                <br>
+            </div>
+
+        </ng-container>
+
+        <div class="w3-container" style="border-top: 2px solid #7d97a5">
+
             <br>
+
+            <div id="total">Вкупен Коефициент: {{totalCoeficient.toFixed(2)}}</div>
+
+            <div class="input-group" style="width: 120px; margin:0 auto">
+
+                <div class="input-group-addon">Ден.</div>
+                <input class="form-control" type="number" onkeypress="return event.charCode >= 48" min="1" name="money" style="background-color: #e8edff"
+                    [(ngModel)]="money">
+
+            </div>
+
+            <p>Добивка: {{money ? (money*totalCoeficient).toFixed(2) : 1}}Ден.</p>
+
+            <h5 style="cursor: pointer" (click)="saveTicket(money)">Зачувај Тикет
+                <i class="fa fa-check fa-lg" aria-hidden="true" style="color: green"></i>
+            </h5>
+            <h5 style="cursor: pointer" (click)="deleteAll()">Избриши се
+                <i class="fa fa-times fa-lg" aria-hidden="true" style="color: red"></i>
+            </h5>
         </div>
-
-
-    </ng-container>
-
-    <div style="font-size:small" id="total">Total Coeficient: {{totalCoeficient.toFixed(2)}}</div>
-
-    <div class="input-group" style="width: 120px; margin:0 auto">
-
-    <div class="input-group-addon">€</div>
-    <input class="form-control" type="number" onkeypress="return event.charCode >= 48" min="1" name="money" style="background-color: #e8edff" [(ngModel)]="money">
-    
     </div>
 
-    <p>Dobivka: {{money ? (money*totalCoeficient).toFixed(2) : 1}}€</p>
 
-    <p style="cursor: pointer" (click)="saveTicket(money)">Save Ticket</p>
-    <p style="cursor: pointer" (click)="deleteAll()">Delete All</p>
+    <div id="id01" class="w3-modal w3-animate-opacity">
+        <div class="w3-modal-content">
 
-</div>
+            <header class="w3-container w3-teal w3-theme-l1">
+                <span onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-display-topright">&times;</span>
+                <h6> Не можете на ист тикет да внесувате ист натпревар повеќе пати </h6>
+                <h6> Сакате ли да го замените типот за натпреварот? </h6>
+            </header>
 
-<div id="id01" class="w3-modal">
-    <div class="w3-modal-content">
+            <div class="w3-container">
+                <button (click)="clickDa()" style="margin:20px" class="w3-button w3-hide-medium w3-padding-large w3-hover-l1 w3-theme-d2">
+                    Да, сакам да го заменам типот 
+                </button>
+                <button (click)="clickNe()" class="w3-button w3-hide-medium w3-padding-large w3-hover-l1 w3-theme-d2"> Не, нека остане стариот тип </button>
+            </div>
 
-        <header class="w3-container w3-teal w3-theme-l1">
-            <span onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-display-topright">&times;</span>
-            <h4> Utakmicata e veke uplatena, sakate li da ja zamenite? </h4>
-        </header>
+            <footer class="w3-container w3-teal">
+                <p> </p>
+            </footer>
 
-        <div class="w3-container">
-            <button (click)="clickDa()" class="w3-button w3-hide-medium w3-padding-large w3-hover-l1 w3-theme-d2"> Da </button> 
-            <button (click)="clickNe()" class="w3-button w3-hide-medium w3-padding-large w3-hover-l1 w3-theme-d2"> Ne </button>     
         </div>
-
-        <footer class="w3-container w3-teal">
-            <p></p>
-        </footer>
-
     </div>
+
 </div>
-
-<!--<p *ngIf="games.length == 0">Odberete Natprevari</p>
-<br>
-
-<div *ngIf="games.length > 0">
-    <table>
-        <colgroup>
-            <col class="first" />
-            <col class="second" />
-            <col class="third" />
-            <col class="fourth" />
-            <col class="fifth" />
-        </colgroup>
-        <thead>
-            <tr>
-                <th colspan="5"> Your Ticket</th>
-            </tr>
-
-            <tr>
-                <th>No.</th>
-                <th>Match</th>
-                <th>Choice</th>
-                <th>Odd</th>
-                <th style="cursor: pointer" (click)="deleteAll()">Delete All</th>
-            </tr>
-        </thead>
-
-        <tbody>
-            <tr *ngFor="let game of games; let i=index">
-                <td>{{i+1}}</td>
-                <td>{{game.matchName}}</td>
-                <td>{{game.choiceName}}</td>
-                <td>{{game.choiceOdd}}</td>
-                <td style="cursor: pointer" (click)="delete(i)">&#10060;</td>
-            </tr>
-        </tbody>
-
-        <tfoot>
-            <tr>
-                <th id="total" colspan="3">Total Coeficient:</th>
-                <th>{{totalCoeficient.toFixed(2)}}</th>
-                <th style="cursor: pointer" (click)="saveTicket(money)">Save Ticket</th>
-            </tr>
-                            <tr>
-                                <th>Bet:</th>
-                                <input type="number" name="money" min="1" style="height: 41px; width: 100%; background-color: #e8edff" [(ngModel)]="money">
-                                <th>Dobivka:</th>
-                                <th>{{money ? (money*totalCoeficient).toFixed(2) : 1}}</th>
-                                <th style="cursor: pointer" (click)="saveTicket(money)">&#9989;</th>
-                            </tr>
-        </tfoot>
-
-    </table>
-
-    <table>
-             <tr>
-                
-                <th>Bet:</th>
-                <th><input type="number" name="money" min="1" style="background-color: #e8edff" [(ngModel)]="money"></th>
-                <th id="total">Total Coeficient: {{totalCoeficient.toFixed(2)}}</th>
-                <th>Dobivka: {{money ? (money*totalCoeficient).toFixed(2) : 1}}</th>
-                <th class="saveTicket" style="cursor: pointer" (click)="saveTicket(money)">Save Ticket &#9989;</th>
-            </tr>
-    </table>
-</div>-->

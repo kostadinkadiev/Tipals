@@ -12,7 +12,7 @@ import { AppComponent } from './app.component';
 import { OtherComponent } from './other/other.component';
 import { AnotherComponent } from './other/another.component';
 import { RegisterComponent } from './register/index';
-import { UserService, AlertService, AuthenticationService, MatchesService, TicketService } from './_services/index';
+import { UserService, AlertService, AuthenticationService, MatchesService, TicketService, clickedGame, clickedTip, activateHeader } from './_services/index';
 import { routing } from './app-routing.module';
 import { LoginComponent } from './login/index';
 import { AlertComponent } from './_directives/index';
@@ -62,6 +62,9 @@ import { UserDetailsComponent } from './user-details/user-details.component';
     AuthenticationService,
     MatchesService,
     TicketService,
+    clickedGame,
+    clickedTip,
+    activateHeader,
     // providers used to create fake backend
     fakeBackendProvider,
     MockBackend,

@@ -1,14 +1,21 @@
 .activeLink{
     background-color: white !important;
     text-decoration: none;
-    color: #4d636f;
+    color: #4d636f !important;
 }
+.dropdown-menu {
+    position: relative;
+    z-index: 999;
+} 
 
-
-
-
-
-
+/* .navbar{
+    position: relative;
+    z-index: 999;
+    overflow: visible !important;
+    visibility: visible;
+    display: inline-block;
+}
+ */
 
 /*nav
 {

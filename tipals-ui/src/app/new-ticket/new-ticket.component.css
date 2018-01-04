@@ -64,3 +64,6 @@ td
     background-color: #eff2ff;
   }
 }
+div.ng-show {
+  animation: 0.5s myChange;
+}

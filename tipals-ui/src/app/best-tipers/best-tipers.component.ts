@@ -41,7 +41,6 @@ export class BestTipersComponent implements OnInit {
     if(this.currentUser.followUsersId.indexOf(user.id) !== -1) {
       return true;
     }
-
   }
 
 

@@ -1,39 +1,45 @@
-import { Component, Input, OnInit, OnChanges, SimpleChanges } from '@angular/core';
-import { Match, Choice, Game_old } from '../_models/index';
-import { MatchesService } from '../_services/index';
+import { Component, Input, OnInit, OnChanges, SimpleChanges,  } from '@angular/core';
+import { ticketGame, Game_old } from '../_models/index';
+import { clickedTip } from '../_services/index';
 
 @Component({
   selector: 'app-new-ticket',
   templateUrl: './new-ticket.component.html',
   styleUrls: ['./new-ticket.component.css']
+
+
+  
 })
 export class NewTicketComponent implements OnInit {
 
-  games = new Array<Game_old>();
+  ticketGame: ticketGame;
+  ticketGames = new Array<ticketGame>();
   totalCoeficient = 1;
   index: number;
-  //flag: boolean;
-  game: Game_old;
 
-  constructor(private matchesService: MatchesService) { }
+  constructor(private clickedTip: clickedTip) { }
 
   ngOnInit() {
-    this.matchesService.pushedGame.subscribe(
-      data => this.addGame(data)
-    );
+
+    this.clickedTip.eventSetClickedTip.subscribe(
+      data => this.addGame(data));
+
   }
 
-  // ngOnChanges(changes: SimpleChanges): void {
-
-  //   if (!this.game)
-  //     return;
-
-  //   this.addGame(this.game);
-  //   this.totalCoeficient = this.calculateTotalCoeficient();
-  // }
+  addGame(game) {
+    this.index = this.ticketGames.findIndex(e => e.gameHome == game.gameHome);
+    if (this.index == -1) {
+      this.ticketGames.push(game);
+    }
+    else{
+      this.ticketGame = game;
+      document.getElementById('id01').style.display = 'block'
+    }
+    this.totalCoeficient = this.calculateTotalCoeficient();
+  }
 
   clickDa() {
-    this.games[this.index] = this.game;
+    this.ticketGames[this.index] = this.ticketGame;
     this.totalCoeficient = this.calculateTotalCoeficient();
     document.getElementById('id01').style.display = 'none'
   }
@@ -42,40 +48,21 @@ export class NewTicketComponent implements OnInit {
     document.getElementById('id01').style.display = 'none'
   }
 
-  addGame(game) {
-    this.index = this.games.findIndex(e => e.matchName == game.matchName);
-    if (this.index == -1) {
-      this.games.push(game);
-    }
-    else{
-
-      //   if (confirm("Utakmicta ti e veke uplatena sakash li da ja zamenish?")) {
-      //     this.games[index] = game;
-      //   }
-      //   this.totalCoeficient = this.calculateTotalCoeficient();
-      this.game = game;
-      document.getElementById('id01').style.display = 'block'
-    }
-    
-    this.totalCoeficient = this.calculateTotalCoeficient();
-    
-  }
-
   calculateTotalCoeficient() {
     var totalCoeficient = 1;
-    for (var i = 0; i < this.games.length; i++) {
-      totalCoeficient = totalCoeficient * this.games[i].choiceOdd;
+    for (var i = 0; i < this.ticketGames.length; i++) {
+      totalCoeficient = totalCoeficient * this.ticketGames[i].tipOdd;
     }
     return totalCoeficient;
   }
 
   delete(index) {
-    this.games.splice(index, 1);
+    this.ticketGames.splice(index, 1);
     this.totalCoeficient = this.calculateTotalCoeficient();
   }
 
   deleteAll() {
-    this.games = [];
+    this.ticketGames = [];
   }
   saveTicket(money){
     

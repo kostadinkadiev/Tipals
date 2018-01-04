@@ -1,26 +1,17 @@
-import { Game, Game_old } from '../_models';
+import { Data } from '@angular/router/src/config';
+import { ticketGame } from './ticketGame'
 
 export class Ticket {
-    id: number;
+    ticketDate: Date;
     userId: number;
-    bet: number;
-    totalCoeficient: number;
-    isWin: boolean;
-    games: Array<Game_old>;
-    constructor(id: number, userId:number, bet: number, games: Array<Game_old>) 
+    userEmail: string;
+    games: Array<ticketGame>;
+    
+    constructor(ticketDate: Date, userId: number, userEmail: string, games: Array<ticketGame>) 
         { 
-            this.id = id;
+            this.ticketDate = ticketDate; 
             this.userId = userId;
-            this.bet = bet;
-            this.totalCoeficient = 1;
+            this.userEmail = userEmail; 
             this.games = games;
-            this.isWin = true;
-            for(let i = 0; i < games.length; i++){
-                this.totalCoeficient *= games[i].choiceOdd;
-                if(!games[i].isWin)
-                    this.isWin = false;
-            }
         }
-
-
 }

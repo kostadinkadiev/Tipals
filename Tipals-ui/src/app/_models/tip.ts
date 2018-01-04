@@ -1,13 +1,13 @@
 export class Tip {
     Name: string;
     Description: string;
-    Tips: string;
+    Choice: string;
     Odd: number;
-    constructor(theName: string, theDescription: string, theTip: string, theOdd: number) 
+    constructor(theName: string, theDescription: string, theChoice: string, theOdd: number) 
         { 
             this.Name = theName; 
             this.Description = theDescription;
-            this.Tips = theTip;
+            this.Choice = theChoice;
             this.Odd = theOdd;
         }
 }

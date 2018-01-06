@@ -39,13 +39,12 @@ export class MatchDetailsComponent implements OnDestroy, OnInit {
     this.theGame = this.clickedGame.getClickedGame();
     this.clickedGame.eventSetClickedGame.subscribe(
       data => {
-      this.theGame = data;
-      this.tipsResult = this.groupBy(this.theGame.Tips, function(item)
-      {
-        return [item.Name];
-      });
-/*       console.log(this.theGame);*/
-      console.log(this.tipsResult); 
+        this.theGame = data;
+        this.tipsResult = this.groupBy(this.theGame.Tips, function (item) {
+          return [item.Name];
+        });
+        /*       console.log(this.theGame);*/
+        //console.log(this.tipsResult); 
       })
 
   }
@@ -69,6 +68,7 @@ export class MatchDetailsComponent implements OnDestroy, OnInit {
         x[i].className = x[i].className.replace("w3-hide", "w3-show");
         x[i].previousElementSibling.firstElementChild.className =
           x[i].previousElementSibling.firstElementChild.className.replace("fa-plus", "fa-minus");
+          this.shrink(id);
       } else {
         x[i].className = x[i].className.replace("w3-show", "w3-hide");
         x[i].previousElementSibling.firstElementChild.className =
@@ -76,7 +76,33 @@ export class MatchDetailsComponent implements OnDestroy, OnInit {
       }
 
     }
+    
   }
+
+  shrink(id) {
+    var textButtons = document.getElementsByClassName(id + id.length + "button");
+
+    var textButtonsLength = textButtons.length;
+
+    // Loop through all of the dynamic buttons on the page
+    for (var i = 0; i < textButtonsLength; i++) {
+
+      var textButton = textButtons[i];
+
+      // Loop through all of the dynamic divs within the button
+      var textDiv = <HTMLElement>textButton.getElementsByClassName("dynamicDiv")[0];
+      var textOdd = <HTMLElement>textButton.getElementsByClassName("dynamicOdd")[0];
+
+      while ((textDiv.clientWidth + textOdd.clientWidth + 15) > textButton.clientWidth) {
+        var style = window.getComputedStyle(textDiv, null).getPropertyValue('font-size');
+        var fontSize = parseFloat(style);
+
+        textDiv.style.fontSize = (fontSize - 1) + 'px';
+        textOdd.style.fontSize = (fontSize - 1) + 'px';
+      }
+    }
+  }
+
 
   onSend(theGame, Tip) {
     this.selectedGame = new ticketGame(theGame.Date, theGame.Time, theGame.Home, theGame.Away, Tip.Name, Tip.Description, Tip.Choice, Tip.Odd);

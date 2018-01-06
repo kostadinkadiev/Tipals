@@ -16,19 +16,21 @@
       <i class="fa fa-plus pull-right"></i>
     </button>
 
-    <ng-container *ngFor="let Choice of Tip; index as j">
-      <div class="{{Tip[0].Name}}{{Tip[0].Name.length}} w3-hide w3-container w3-animate-opacity text-center">
 
-        <button class="w3-button w3-block w3-theme-l4 text-center col-xs-12" (click)="onSend(theGame, Choice)" style="cursor: pointer; margin: 5px"
-          data-toggle="tooltip" data-placement="right" title="{{Choice.Description}}">
-          <div style="float: left">{{Choice.Choice}}</div>
-          <div style="float: right; color: rgb(0, 97, 0)">Коефициент: {{Choice.Odd | number:'1.2-2'}}</div>
+    <div class="{{Tip[0].Name}}{{Tip[0].Name.length}} w3-hide w3-container w3-animate-opacity text-center">
+    
+      <ng-container *ngFor="let Choice of Tip; index as j">
+      
+        <button class="{{Tip[0].Name}}{{Tip[0].Name.length}}button w3-button w3-theme-l4 text-center col-xs-4" (click)="onSend(theGame, Choice)" data-toggle="tooltip" data-placement="right" title="{{Choice.Description}}"
+         style="height: 44px; padding: 5px; cursor: pointer; margin: 0px; border: 3px solid white">
+
+          <div class="dynamicDiv" style="float: left">{{Choice.Choice}}</div>
+          <div class="dynamicOdd" style="float: right; color: rgb(0, 68, 0); font-weight: bold">{{Choice.Odd | number:'1.2-2'}}</div>
 
         </button>
 
-      </div>
     </ng-container>
-
+  </div>
   </ng-container>
 
 </div>

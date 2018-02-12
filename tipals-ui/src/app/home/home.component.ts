@@ -62,7 +62,8 @@ export class HomeComponent implements OnInit {
         this.router.navigate(['./matchDetails/']);
         this.clickedGame.setClickedGame(clickedGame);
 
-        this.activateHeader.setLink("/matchDetails")
+        this.activateHeader.setLink("/matchDetails");
+
     }
 
 }

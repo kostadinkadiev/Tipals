@@ -1,10 +1,12 @@
-import { Component, OnDestroy, OnChanges, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, OnDestroy, OnInit, ChangeDetectorRef } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MatchesService, clickedGame, clickedTip } from '../_services/index';
 import { Match, Bets, Choice, Game_old, Game, ticketGame, Tip } from '../_models/index';
 import { Subscription } from "rxjs/Rx";
 import { elementAt } from 'rxjs/operator/elementAt';
 import { groupBy } from 'rxjs/operator/groupBy';
+import { Observable } from 'rxjs/Observable';
+
 
 declare var $: any;
 
@@ -23,6 +25,8 @@ export class MatchDetailsComponent implements OnDestroy, OnInit {
   theGame: Game;
   uniqueTipsName: any;
   tipsResult = new Array<Tip>();
+  private Observable: Observable<any>;
+  
 
 
 
@@ -36,15 +40,22 @@ export class MatchDetailsComponent implements OnDestroy, OnInit {
 
   ngOnInit() {
 
+    //ova se koristi samo za prviot pat da se laodira natprevarot oti subscribe ne raboti za prviot load
     this.theGame = this.clickedGame.getClickedGame();
+    if (this.theGame !== undefined) {
+      this.tipsResult = this.groupBy(this.theGame.Tips, function (item) {
+        return [item.Name];
+      })};
+
     this.clickedGame.eventSetClickedGame.subscribe(
       data => {
         this.theGame = data;
         this.tipsResult = this.groupBy(this.theGame.Tips, function (item) {
           return [item.Name];
         });
-        /*       console.log(this.theGame);*/
-        //console.log(this.tipsResult); 
+        setTimeout(() => {
+          this.shrinkMain();
+      }, 1000);
       })
 
   }
@@ -66,19 +77,20 @@ export class MatchDetailsComponent implements OnDestroy, OnInit {
     for (var i = 0; i < x.length; i++) {
       if (x[i].className.indexOf("w3-show") == -1) {
         x[i].className = x[i].className.replace("w3-hide", "w3-show");
-        x[i].previousElementSibling.firstElementChild.className =
-          x[i].previousElementSibling.firstElementChild.className.replace("fa-plus", "fa-minus");
-          this.shrink(id);
+        x[i].previousElementSibling.firstElementChild.nextElementSibling.className =
+          x[i].previousElementSibling.firstElementChild.nextElementSibling.className.replace("fa-plus", "fa-minus");
+        this.shrink(id);
       } else {
         x[i].className = x[i].className.replace("w3-show", "w3-hide");
-        x[i].previousElementSibling.firstElementChild.className =
-          x[i].previousElementSibling.firstElementChild.className.replace("fa-minus", "fa-plus");
+        x[i].previousElementSibling.firstElementChild.nextElementSibling.className =
+          x[i].previousElementSibling.firstElementChild.nextElementSibling.className.replace("fa-minus", "fa-plus");
       }
 
     }
-    
+
   }
 
+  //SE KORISTI ZA DA SE NAMALI FONTOT NA TIPOT I KOEFICIENTOT ZA DA GI SOBERE VO KOPCHETO
   shrink(id) {
     var textButtons = document.getElementsByClassName(id + id.length + "button");
 
@@ -103,11 +115,34 @@ export class MatchDetailsComponent implements OnDestroy, OnInit {
     }
   }
 
+  
+  shrinkMain() {
+    var textButtons = document.getElementsByClassName("mainButton");
+
+    // Loop through all of the dynamic buttons on the page
+    for (var i = 0; i < textButtons.length; i++) {
+
+      var textButton = textButtons[i];
+
+      // Loop through all of the dynamic divs within the button
+      var textDiv = <HTMLElement>textButton.getElementsByClassName("mainDiv")[0];
+
+      while ((textDiv.clientWidth + 58) > textButton.clientWidth) {
+        var style = window.getComputedStyle(textDiv, null).getPropertyValue('font-size');
+        var fontSize = parseFloat(style);
+
+        textDiv.style.fontSize = (fontSize - 1) + 'px';
+      }
+    }
+  }
+
 
   onSend(theGame, Tip) {
     this.selectedGame = new ticketGame(theGame.Date, theGame.Time, theGame.Home, theGame.Away, Tip.Name, Tip.Description, Tip.Choice, Tip.Odd);
     this.clickedTip.setClickedTip(this.selectedGame);
   }
+
+  
 
 }
 

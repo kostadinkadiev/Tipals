@@ -11,9 +11,9 @@
 
   <ng-container *ngFor="let Tip of tipsResult; index as i">
 
-    <button (click)="tipClick(Tip[0].Name)" class="w3-button w3-block w3-theme-l1 w3-left-align" style="cursor: pointer; margin: 5px">
-      {{Tip[0].Name}}
-      <i class="fa fa-plus pull-right"></i>
+    <button (click)="tipClick(Tip[0].Name)" class="mainButton flex-container w3-button w3-block w3-theme-l1 w3-left-align" style="cursor: pointer; margin: 5px">
+      <div class="mainDiv" style="float: left">{{Tip[0].Name}}</div>
+      <i class="fa fa-plus" style="float: right"></i>
     </button>
 
 
@@ -21,7 +21,7 @@
     
       <ng-container *ngFor="let Choice of Tip; index as j">
       
-        <button class="{{Tip[0].Name}}{{Tip[0].Name.length}}button w3-button w3-theme-l4 text-center col-xs-4" (click)="onSend(theGame, Choice)" data-toggle="tooltip" data-placement="right" title="{{Choice.Description}}"
+        <button class="{{Tip[0].Name}}{{Tip[0].Name.length}}button w3-button w3-theme-l4 text-center col-sm-4 col-xs-12" (click)="onSend(theGame, Choice)" title="{{Choice.Description}}"
          style="height: 44px; padding: 5px; cursor: pointer; margin: 0px; border: 3px solid white">
 
           <div class="dynamicDiv" style="float: left">{{Choice.Choice}}</div>

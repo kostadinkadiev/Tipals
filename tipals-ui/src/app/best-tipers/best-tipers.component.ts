@@ -34,7 +34,7 @@ export class BestTipersComponent implements OnInit {
 
   followUser(userID) {
     this.currentUser.followUsersId.push(userID);
-    //this.userService.update(this.currentUser);
+    this.userService.update(this.currentUser).subscribe(() => {  });
   }
 
   isFollowing(user){

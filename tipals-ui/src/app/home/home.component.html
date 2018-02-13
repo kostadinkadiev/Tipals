@@ -16,7 +16,9 @@
                     </button>
                     <div id={{League.Name}} class="w3-hide w3-container w3-animate-opacity">
                         <ng-container *ngFor="let Game of League.Games">
-                            <button class="w3-button w3-block w3-theme-l1 w3-left-align" style="cursor: pointer; font-size:small; margin: 5px" (click)="gameClick(Game)">{{Game.Home}} - {{Game.Away}}</button>
+                            <button class="{{League.Name}}dynamicButton w3-button w3-block w3-theme-l1 w3-left-align" style="cursor: pointer; font-size:small; margin: 5px" (click)="gameClick(Game)">
+                                <div  style="float: left" class="dynamicDiv">{{Game.Home}} - {{Game.Away}}</div>
+                            </button>
                         </ng-container>
                     </div>
                 </ng-container>

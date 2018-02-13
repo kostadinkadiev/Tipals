@@ -49,6 +49,7 @@ export class HomeComponent implements OnInit {
             x.previousElementSibling.className += " w3-theme-d1";
             x.previousElementSibling.firstElementChild.className =
                 x.previousElementSibling.firstElementChild.className.replace(" fa-plus", " fa-minus");
+            this.shrink(id);
         } else {
             x.className = x.className.replace("w3-show", "");
             x.previousElementSibling.className =
@@ -65,5 +66,23 @@ export class HomeComponent implements OnInit {
         this.activateHeader.setLink("/matchDetails");
 
     }
+    shrink(id) {
+        var textButtons = document.getElementsByClassName(id+"dynamicButton");
 
+        for (var i = 0; i < textButtons.length; i++) {
+    
+          var textButton = textButtons[i];
+    
+          // Loop through all of the dynamic divs within the button
+          var textDiv = <HTMLElement>textButton.getElementsByClassName("dynamicDiv")[0];
+
+          while ((textDiv.clientWidth + 15) > textButton.clientWidth) {
+
+            var style = window.getComputedStyle(textDiv, null).getPropertyValue('font-size');
+            var fontSize = parseFloat(style);
+    
+            textDiv.style.fontSize = (fontSize - 1) + 'px';
+          }
+        }
+      }
 }

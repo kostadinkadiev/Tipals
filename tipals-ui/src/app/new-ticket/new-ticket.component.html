@@ -6,10 +6,10 @@
 
         <ng-container *ngFor="let game of ticketGames; let i=index">
 
-            <div style="font-size:small" class="w3-container">
-                <p>{{game.gameHome}} - {{game.gameAway}}</p>
-                <p>{{game.tipName}} {{game.tipChoice}}</p>
-                <p>Коефициент: {{game.tipOdd}}</p>
+            <div id="{{game.gameHome}}-{{game.gameAway}}" style="font-size:small; display: none" class="w3-container">
+                <p class="dynamicP">{{game.gameHome}} - {{game.gameAway}}</p>
+                <p class="dynamicP">{{game.tipName}} {{game.tipChoice}}</p>
+                <p class="dynamicP">Коефициент: {{game.tipOdd}}</p>
                 <p style="cursor: pointer" (click)="delete(i)">
                     <i class="fa fa-times fa-2x" aria-hidden="true" style="color: red"></i>
                 </p>

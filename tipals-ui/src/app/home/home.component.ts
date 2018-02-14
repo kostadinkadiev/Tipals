@@ -20,7 +20,7 @@ export class HomeComponent implements OnInit {
 
     constructor(private activateHeader: activateHeader, private clickedGame: clickedGame, private ticketService: TicketService, private userService: UserService, private route: ActivatedRoute, private router: Router, private matchesService: MatchesService) {
         this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
-        
+
     }
 
     ngOnInit() {
@@ -31,6 +31,11 @@ export class HomeComponent implements OnInit {
             this.Leagues = someArray;
         });
         this.activateHeader.setLink(this.router.url);
+        
+        setTimeout(() => {
+            this.shrink("","League");
+          }, 7000);
+
     }
 
     deleteUser(id: number) {
@@ -49,7 +54,7 @@ export class HomeComponent implements OnInit {
             x.previousElementSibling.className += " w3-theme-d1";
             x.previousElementSibling.firstElementChild.className =
                 x.previousElementSibling.firstElementChild.className.replace(" fa-plus", " fa-minus");
-            this.shrink(id);
+            this.shrink(id, "Game");
         } else {
             x.className = x.className.replace("w3-show", "");
             x.previousElementSibling.className =
@@ -66,17 +71,24 @@ export class HomeComponent implements OnInit {
         this.activateHeader.setLink("/matchDetails");
 
     }
-    shrink(id) {
-        var textButtons = document.getElementsByClassName(id+"dynamicButton");
+    shrink(id, type) {
+        var textButtons = document.getElementsByClassName(id+type);
 
         for (var i = 0; i < textButtons.length; i++) {
     
-          var textButton = textButtons[i];
-    
-          // Loop through all of the dynamic divs within the button
-          var textDiv = <HTMLElement>textButton.getElementsByClassName("dynamicDiv")[0];
+          var textButton = <HTMLElement>textButtons[i];
 
-          while ((textDiv.clientWidth + 15) > textButton.clientWidth) {
+          if(textButton.style.display=='none'){
+              textButton.style.display = 'block';
+          }
+          var margin = 15;
+          if(id.length == 0){
+              margin = 40;
+          }
+          // Loop through all of the dynamic divs within the button
+          var textDiv = <HTMLElement>textButton.getElementsByClassName(type+"Div")[0];
+
+          while ((textDiv.clientWidth + margin) > textButton.clientWidth) {
 
             var style = window.getComputedStyle(textDiv, null).getPropertyValue('font-size');
             var fontSize = parseFloat(style);

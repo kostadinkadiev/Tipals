@@ -11,13 +11,14 @@
             <!-- Left Column -->
             <div class="col-lg-3">
                 <ng-container *ngFor="let League of Leagues.Leagues; let i=index">
-                    <button (click)="leagueClick(League.Name)" class="w3-button w3-block w3-theme-l1 w3-left-align"> {{League.Name}}
+                    <button (click)="leagueClick(League.Name)" class="League w3-button w3-block w3-theme-l1 w3-left-align">
+                        <div  style="float: left" class="LeagueDiv">{{League.Name}}</div>
                         <i class="fa fa-plus pull-right"></i>
                     </button>
                     <div id={{League.Name}} class="w3-hide w3-container w3-animate-opacity">
                         <ng-container *ngFor="let Game of League.Games">
-                            <button class="{{League.Name}}dynamicButton w3-button w3-block w3-theme-l1 w3-left-align" style="cursor: pointer; font-size:small; margin: 5px" (click)="gameClick(Game)">
-                                <div  style="float: left" class="dynamicDiv">{{Game.Home}} - {{Game.Away}}</div>
+                            <button class="{{League.Name}}Game w3-button w3-block w3-theme-l1 w3-left-align" style="padding-left: 5px; cursor: pointer; font-size:small; margin: 5px" (click)="gameClick(Game)">
+                                <div  style="float: left" class="GameDiv">{{Game.Home}} - {{Game.Away}}</div>
                             </button>
                         </ng-container>
                     </div>
